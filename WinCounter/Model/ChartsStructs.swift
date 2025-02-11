@@ -9,7 +9,7 @@ import Foundation
 
 struct DataStructuresForChart {
     
-    let lable: String
+    let label: String
     let value: Int
 }
 

@@ -20,7 +20,7 @@ struct MatchesPlayedView: View {
                 if let matches = sparring.matches {
                     ForEach(matches, id: \.self) { match in
                         NavigationLink {
-                            MatchEditingView(match: match, sparing: sparring)
+                            MatchEditingView(match: match, sparring: sparring)
                         } label: {
                             VStack(alignment: .leading) {
                                 Text("Match nr \(match.matchNumber)")

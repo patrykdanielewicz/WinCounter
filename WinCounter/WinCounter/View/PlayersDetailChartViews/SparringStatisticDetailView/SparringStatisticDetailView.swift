@@ -16,8 +16,8 @@ struct SparringStatisticDetailView: View {
     @State var player: Players
     @State var playersMatches = 0
     @State var wins = 0
-    @State var loses = 0
-    @State var mostFrequentOponent = ""
+    @State var losses = 0
+    @State var mostFrequentOpponent = ""
     @State var mostDefeatedOpponents = [String]()
     @State var mostDefeatingOpponents = [String]()
     
@@ -83,7 +83,7 @@ struct SparringStatisticDetailView: View {
                                     .frame(width: 15, height: 15)
                                     .foregroundStyle(.brandPrimary)
                                 VStack(alignment: .center) {
-                                    Text("\(loses)")
+                                    Text("\(losses)")
                                         .font(.title)
                                         .bold()
                                     Text("matches lost")
@@ -97,49 +97,49 @@ struct SparringStatisticDetailView: View {
                 Section {
                     VStack {
                         VStack(alignment: .center) {
-                            Text("\(mostFrequentOponent)")
+                            Text("\(mostFrequentOpponent)")
                                 .font(.title)
                                 .bold()
-                            Text("Most frequent oponent")
+                            Text("Most frequent opponent")
                                 .font(.footnote)
                             Divider()
                         }
                         
                         VStack(alignment: .center) {
-                            ForEach(mostDefeatedOpponents, id: \.self) { oponent in
-                                Text("\(oponent)")
+                            ForEach(mostDefeatedOpponents, id: \.self) { opponent in
+                                Text("\(opponent)")
                                     .font(.title)
                                     .bold()
                             }
                             if mostDefeatedOpponents.count > 1 {
-                                Text("Most defeated oponents")
+                                Text("Most defeated opponents")
                                     .font(.footnote)
                             }
                             else {
-                                Text("Most defeated oponent")
+                                Text("Most defeated opponent")
                                     .font(.footnote)
                             }
                             Divider()
                         }
                         VStack(alignment: .center) {
-                            ForEach(mostDefeatingOpponents, id: \.self) { oponent in
-                                Text("\(oponent)")
+                            ForEach(mostDefeatingOpponents, id: \.self) { opponent in
+                                Text("\(opponent)")
                                     .font(.title)
                                     .bold()
                             }
                             if mostDefeatingOpponents.count > 1 {
-                                Text("Most defeating oponents")
+                                Text("Most defeating opponents")
                                     .font(.footnote)
                             }
                             else {
-                                Text("Most defeating oponent")
+                                Text("Most defeating opponent")
                                     .font(.footnote)
                             }
                         }
                     }
                 }
                     Section {
-                        ChartForEatchPlayerSSDV(sparrings: sparrings, player: player)
+                        ChartForEachPlayerSSDV(sparrings: sparrings, player: player)
                     }
                 }
             }
@@ -147,10 +147,10 @@ struct SparringStatisticDetailView: View {
             .onAppear() {
                 playersMatches = DataForSparringsDetailView.playersMatchesInSparring(sparring: sparrings, player: player)
                 wins = DataForSparringsDetailView.playersWonMatches(sparring: sparrings, player: player)
-                loses = DataForSparringsDetailView.playersLostMatches(sparring: sparrings, player: player)
-                mostFrequentOponent = DataForSparringsDetailView.mostFrequentOpponentForPlayer(sparring: sparrings, player: player)
-                mostDefeatedOpponents = DataForSparringsDetailView.mostWinsAgainstOpponent(oponentsStats: DataForSparringsDetailView.playersEachOponentsStats(sparring: sparrings, player: player))
-                mostDefeatingOpponents = DataForSparringsDetailView.mostLosesAgainstOppoent(oponentsStats: DataForSparringsDetailView.playersEachOponentsStats(sparring: sparrings, player: player))
+                losses = DataForSparringsDetailView.playersLostMatches(sparring: sparrings, player: player)
+                mostFrequentOpponent = DataForSparringsDetailView.mostFrequentOpponentForPlayer(sparring: sparrings, player: player)
+                mostDefeatedOpponents = DataForSparringsDetailView.mostWinsAgainstOpponent(opponentsStats: DataForSparringsDetailView.playersEachOpponentsStats(sparring: sparrings, player: player))
+                mostDefeatingOpponents = DataForSparringsDetailView.mostLossesAgainstOppoent(opponentsStats: DataForSparringsDetailView.playersEachOpponentsStats(sparring: sparrings, player: player))
                 
                 
             }

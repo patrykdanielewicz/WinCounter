@@ -82,8 +82,8 @@ struct AddNewSparring: View {
                                 lessThenTwoPlayers.toggle()
                                 return
                             }
-                            let sparing = Sparring(date: sparringDate, players: selectedPlayers)
-                            modelContext.insert(sparing)
+                            let sparring = Sparring(date: sparringDate, players: selectedPlayers)
+                            modelContext.insert(sparring)
                             do {
                                 try modelContext.save()
                             }

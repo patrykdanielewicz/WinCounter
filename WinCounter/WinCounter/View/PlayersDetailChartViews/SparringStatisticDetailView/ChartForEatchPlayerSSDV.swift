@@ -1,5 +1,5 @@
 //
-//  ChartForEatchPlayerSSDV.swift
+//  ChartForEachPlayerSSDV.swift
 //  WinCounter
 //
 //  Created by Patryk Danielewicz on 15/01/2025.
@@ -8,7 +8,7 @@
 import Charts
 import SwiftUI
 
-struct ChartForEatchPlayerSSDV: View {
+struct ChartForEachPlayerSSDV: View {
     
     @State var dataForCharts = [DataForEachPlayer]()
     @State var sparrings: [Sparring]
@@ -21,15 +21,15 @@ struct ChartForEatchPlayerSSDV: View {
                     HStack {
                         VStack {
                             Text(chart.name)
-                            Chart(chart.stats, id: \.lable) { dataItem in
+                            Chart(chart.stats, id: \.label) { dataItem in
                                 SectorMark(angle: .value("label", dataItem.value), innerRadius: .ratio(0.8))
-                                    .foregroundStyle(by: .value("Player", dataItem.lable))
+                                    .foregroundStyle(by: .value("Player", dataItem.label))
                             }
                             .frame(width: 150, height: 150)
                             .padding()
                             .chartForegroundStyleScale([
                                 "wins": .brandPrimary,
-                                "loses": .brandPrimary.opacity(0.5)
+                                "losses": .brandPrimary.opacity(0.5)
                             ])
                             .chartLegend(.hidden)
                             .chartBackground { chartProxy  in
@@ -79,8 +79,8 @@ struct ChartForEatchPlayerSSDV: View {
                 }
             }
             .onAppear {
-                dataForCharts = DataForChartsPreparation.dataForEachOponentsPerSparring(oponentsWinLoseDictionary: DataForSparringsDetailView.playersEachOponentsStats(sparring: sparrings, player: player))
-                print(DataForSparringsDetailView.playersEachOponentsStats(sparring: sparrings, player: player))
+                dataForCharts = DataForChartsPreparation.dataForEachOpponentsPerSparring(opponentsWinLossesDictionary: DataForSparringsDetailView.playersEachOpponentsStats(sparring: sparrings, player: player))
+                print(DataForSparringsDetailView.playersEachOpponentsStats(sparring: sparrings, player: player))
             }
         }
         
@@ -88,5 +88,5 @@ struct ChartForEatchPlayerSSDV: View {
 
 
 //#Preview {
-//    ChartForEatchPlayerSSDV()
+//    ChartForEachPlayerSSDV()
 //}

@@ -24,9 +24,9 @@ struct SparringStatisticView: View {
                                 .fontWeight(.ultraLight)
                             
                             NavigationLink(destination: SparringStatisticDetailView(filterDate: chart.sparring, player: player)) {
-                                Chart(chart.stats, id: \.lable) { dataItem in
+                                Chart(chart.stats, id: \.label) { dataItem in
                                     SectorMark(angle: .value("label", dataItem.value), innerRadius: .ratio(0.7))
-                                        .foregroundStyle(by: .value("Player", dataItem.lable))
+                                        .foregroundStyle(by: .value("Player", dataItem.label))
                                 }
                                 .chartForegroundStyleScale([
                                     "Total Wins": .brandPrimary,

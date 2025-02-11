@@ -26,9 +26,9 @@ struct PlayerVsRivalsChartView: View {
                             .bold()
                             .padding(.top)
                         
-                        Chart(chart.stats, id: \.lable) { dataItem in
+                        Chart(chart.stats, id: \.label) { dataItem in
                             SectorMark(angle: .value("label", dataItem.value), innerRadius: .ratio(0.8))
-                                .foregroundStyle(by: .value("Player", dataItem.lable))
+                                .foregroundStyle(by: .value("Player", dataItem.label))
                         }
                         .frame(width: 150, height: 150)
                         .padding()
@@ -63,8 +63,8 @@ struct PlayerVsRivalsChartView: View {
                     
                     VStack {
                         if let win = player.winsWithUniqueRivals[chart.name] {
-                            if let lose = player.lostWithUnigueRivals[chart.name] {
-                                let totalGames = win + lose
+                            if let losses = player.lostWithUnigueRivals[chart.name] {
+                                let totalGames = win + losses
                                 VStack {
                                     Text("\(totalGames)")
                                         .font(.title)
@@ -77,7 +77,7 @@ struct PlayerVsRivalsChartView: View {
                                 .padding(.bottom, 0.8)
                                 
                                 VStack {
-                                    Text("\(lose)")
+                                    Text("\(losses)")
                                         .font(.title)
                                         .fontWeight(.heavy)
                                     Text("Total Losses")
@@ -107,8 +107,8 @@ struct PlayerVsRivalsChartView: View {
                             }
                         }
                         else {
-                            if let lose = player.lostWithUnigueRivals[chart.name] {
-                                let totalGames = lose
+                            if let losses = player.lostWithUnigueRivals[chart.name] {
+                                let totalGames = losses
                                 VStack {
                                     Text("\(totalGames)")
                                         .font(.title)
@@ -119,7 +119,7 @@ struct PlayerVsRivalsChartView: View {
                                 }
                                 .padding(.bottom, 0.8)
                                 VStack {
-                                    Text("\(lose)")
+                                    Text("\(losses)")
                                         .font(.title)
                                         .fontWeight(.heavy)
                                     Text("Total Losses")

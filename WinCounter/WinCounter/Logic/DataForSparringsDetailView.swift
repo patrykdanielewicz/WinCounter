@@ -39,20 +39,20 @@ struct DataForSparringsDetailView {
     }
     
     static func playersLostMatches(sparring: [Sparring], player: Players) -> Int {
-        var loses = 0
+        var losses = 0
         for spar in sparring {
             if let matches = spar.matches {
                 for match in matches {
                     if match.points.keys.contains(player.name) && !match.winner.keys.contains(player.name) {
-                        loses += 1
+                        losses += 1
                     }
                 }
             }
         }
-        return loses
+        return losses
     }
-    static func totalMatchesWithUniqueOponent(sparring: [Sparring], player: Players) -> [String: Int] {
-        var oponents = [String]()
+    static func totalMatchesWithUniqueOpponent(sparring: [Sparring], player: Players) -> [String: Int] {
+        var opponents = [String]()
         for spar in sparring {
             if let matches = spar.matches {
                 for match in matches {
@@ -60,14 +60,14 @@ struct DataForSparringsDetailView {
                         let rival =  match.points.filter { $0.key != player.name }
                         let rivalArrya = Array(rival.keys)
                         for rival in rivalArrya {
-                            oponents.append(rival)
+                            opponents.append(rival)
                         }
                     }
                 }
             }
         }
-        let counts = oponents.reduce(into: [:]) { oponent, count in
-            oponent[count, default: 0] += 1
+        let counts = opponents.reduce(into: [:]) { opponent, count in
+            opponent[count, default: 0] += 1
         }
         return counts
     }
@@ -76,7 +76,7 @@ struct DataForSparringsDetailView {
     
     static func mostFrequentOpponentForPlayer(sparring: [Sparring], player: Players) -> String {
      
-        let counts = totalMatchesWithUniqueOponent(sparring: sparring, player: player)
+        let counts = totalMatchesWithUniqueOpponent(sparring: sparring, player: player)
         
         if let mostFrequentOpponent = counts.max(by: { $0.value < $1.value })?.key {
             return mostFrequentOpponent
@@ -86,9 +86,9 @@ struct DataForSparringsDetailView {
         }
     }
     
-    static func playersEachOponentsStats(sparring: [Sparring], player: Players) -> [String : [Int]] {
-        var oponents = [String]()
-        var oponentsWinLoseDictionary = [String : [Int]]()
+    static func playersEachOpponentsStats(sparring: [Sparring], player: Players) -> [String : [Int]] {
+        var opponents = [String]()
+        var opponentsWinLossesDictionary = [String : [Int]]()
         for spar in sparring {
             if let matches = spar.matches {
                 for match in matches {
@@ -96,54 +96,58 @@ struct DataForSparringsDetailView {
                         let rival =  match.points.filter { $0.key != player.name }
                         let rivalArrya = Array(rival.keys)
                         for rival in rivalArrya {
-                            oponents.append(rival)
+                            opponents.append(rival)
                         }
                     }
                 }
             }
         }
-        let uniqueOponents = Set(oponents)
+        let uniqueOpponents = Set(opponents)
         for spar in sparring {
-            for uniqueOponent in uniqueOponents {
-                var matchesWinByOponents = 0
-                var matchesWithOponent = 0
+            for uniqueOpponent in uniqueOpponents {
+                var matchesWinByOpponents = 0
+                var matchesWithOpponent = 0
                 if let matches = spar.matches {
                     for match in matches {
                         
-                        
-                        if match.winner.keys.contains(uniqueOponent) {
-                            matchesWinByOponents += 1
+                        if match.points.keys.contains(player.name) {
+                            
+                            if match.winner.keys.contains(uniqueOpponent) {
+                                matchesWinByOpponents += 1
+                                print("x")
+                            }
+                            if match.points.keys.contains(uniqueOpponent) {
+                                matchesWithOpponent += 1
+                            }
+                            
                         }
-                        if match.points.keys.contains(uniqueOponent) {
-                            matchesWithOponent += 1
-                        }
-                        
                     }
-                    let matchesLostByOponents = matchesWithOponent - matchesWinByOponents
-                    var winLoseArray = [Int]()
-                    winLoseArray.append(matchesLostByOponents)
-                    winLoseArray.append(matchesWinByOponents)
-                    oponentsWinLoseDictionary[uniqueOponent] = winLoseArray
+                    let matchesLostByOpponents = matchesWithOpponent - matchesWinByOpponents
+                    var winLossesArray = [Int]()
+                    winLossesArray.append(matchesLostByOpponents)
+                    winLossesArray.append(matchesWinByOpponents)
+                    opponentsWinLossesDictionary[uniqueOpponent] = winLossesArray
                 } }
         }
-        return oponentsWinLoseDictionary
+
+        return opponentsWinLossesDictionary
     }
-    static func mostWinsAgainstOpponent(oponentsStats: [String : [Int]]) -> [String] {
+    static func mostWinsAgainstOpponent(opponentsStats: [String : [Int]]) -> [String] {
         var array = [String]()
-        var winPercentageWithOponents = [String: Double]()
+        var winPercentageWithOpponents = [String: Double]()
         
-        for oponent in oponentsStats {
-            let wins = oponent.value[0]
-            let total = oponent.value[0] + oponent.value[1]
+        for opponent in opponentsStats {
+            let wins = opponent.value[0]
+            let total = opponent.value[0] + opponent.value[1]
             let vinsInPercentage = Double(wins) / Double(total)
-            winPercentageWithOponents[oponent.key] = vinsInPercentage
+            winPercentageWithOpponents[opponent.key] = vinsInPercentage
         }
-        if let maxWinPercentage = winPercentageWithOponents.max(by: { $0.value < $1.value}) {
-            let oponentsWithMaxWinPercentage = winPercentageWithOponents.filter { $0 == maxWinPercentage}.map {$0.key}
+        if let maxWinPercentage = winPercentageWithOpponents.max(by: { $0.value < $1.value}) {
+            let opponentsWithMaxWinPercentage = winPercentageWithOpponents.filter { $0 == maxWinPercentage}.map {$0.key}
             
-            for oponent in oponentsWithMaxWinPercentage {
-                let winLoses = oponentsStats.filter { $0.key == oponent}
-                for x in winLoses {
+            for opponent in opponentsWithMaxWinPercentage {
+                let winLosses = opponentsStats.filter { $0.key == opponent}
+                for x in winLosses {
                     array.append(x.key)
                 }
             }
@@ -153,23 +157,23 @@ struct DataForSparringsDetailView {
         }
         return array
     }
-    static func mostLosesAgainstOppoent(oponentsStats: [String: [Int]]) -> [String] {
+    static func mostLossesAgainstOppoent(opponentsStats: [String: [Int]]) -> [String] {
         var array = [String]()
-        var losePercentageWithOponents = [String: Double]()
+        var lossesPercentageWithOpponents = [String: Double]()
         
-        for oponent in oponentsStats {
-            let loses =  oponent.value[1]
-            let total = oponent.value[0] + loses
-            let winInPercentage = Double(loses) / Double(total)
-            losePercentageWithOponents[oponent.key] = winInPercentage
+        for opponent in opponentsStats {
+            let losses =  opponent.value[1]
+            let total = opponent.value[0] + losses
+            let winInPercentage = Double(losses) / Double(total)
+            lossesPercentageWithOpponents[opponent.key] = winInPercentage
         }
         
-        if let maxWinPercentage = losePercentageWithOponents.max(by: { $0.value < $1.value}) {
-            let oponentsWithMaxLosesPercentage = losePercentageWithOponents.filter { $0 == maxWinPercentage}.map {$0.key}
+        if let maxWinPercentage = lossesPercentageWithOpponents.max(by: { $0.value < $1.value}) {
+            let opponentsWithMaxLossesPercentage = lossesPercentageWithOpponents.filter { $0 == maxWinPercentage}.map {$0.key}
             
-            for oponent in oponentsWithMaxLosesPercentage {
-                let loses = oponentsStats.filter { $0.key == oponent}
-                for x in loses {
+            for opponent in opponentsWithMaxLossesPercentage {
+                let losses = opponentsStats.filter { $0.key == opponent}
+                for x in losses {
                     array.append(x.key)
                 }
             }

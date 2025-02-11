@@ -59,7 +59,7 @@ class Players: Hashable, Identifiable {
     }
     @Transient
     var rivals: Set<String> {
-        var oponents: Set<String> = []
+        var opponents: Set<String> = []
         if let sparrings = sparrings {
             for sparring in sparrings {
                 if let matches = sparring.matches {
@@ -67,7 +67,7 @@ class Players: Hashable, Identifiable {
                         if match.points.keys.contains(name) {
                             let rivals = Array(match.points.keys).filter { $0 != name}
                             for rival in rivals {
-                                oponents.insert(rival)
+                                opponents.insert(rival)
                             }
                             
                         }
@@ -76,12 +76,12 @@ class Players: Hashable, Identifiable {
             }
             
         }
-        return oponents
+        return opponents
     }
     
     @Transient
     var winsWithUniqueRivals: [String: Int] {
-        var oponentsWithWhomPlayerWins: [String] = []
+        var opponentsWithWhomPlayerWins: [String] = []
         var winningMatchesAgainstRival: [String:Int] = [:]
         if let sparrings = sparrings {
             for sparring in sparrings {
@@ -90,20 +90,20 @@ class Players: Hashable, Identifiable {
                         if match.points.keys.contains(name) {
                             if match.winner.keys.contains(name) {
                                 
-                                let loosingPlayers = Array(match.points.keys).filter { $0 != name}
-                                for loosingPlayer in loosingPlayers {
-                                    oponentsWithWhomPlayerWins.append(loosingPlayer)
+                                let losingPlayers = Array(match.points.keys).filter { $0 != name}
+                                for losingPlayer in losingPlayers {
+                                    opponentsWithWhomPlayerWins.append(losingPlayer)
                                 }
                             }
                         }
                     }
                 }
             }
-            let uniqueOponents = Set(oponentsWithWhomPlayerWins)
-            for uniqueOponent in uniqueOponents {
+            let uniqueOpponents = Set(opponentsWithWhomPlayerWins)
+            for uniqueOpponent in uniqueOpponents {
                 
-                let numberOfWinnigGamesWithUniqueOponent = oponentsWithWhomPlayerWins.filter { $0 == uniqueOponent }.count
-                winningMatchesAgainstRival[uniqueOponent] = numberOfWinnigGamesWithUniqueOponent
+                let numberOfWinnigGamesWithUniqueOpponent = opponentsWithWhomPlayerWins.filter { $0 == uniqueOpponent }.count
+                winningMatchesAgainstRival[uniqueOpponent] = numberOfWinnigGamesWithUniqueOpponent
                 
             }
             
@@ -114,7 +114,7 @@ class Players: Hashable, Identifiable {
     
     @Transient
     var lostWithUnigueRivals: [String: Int] {
-        var oponentsWithWhomPlayerLost: [String] = []
+        var opponentsWithWhomPlayerLost: [String] = []
         var lostMatchesAgainstRival: [String:Int] = [:]
         if let sparrings = sparrings {
             for sparring in sparrings {
@@ -123,20 +123,20 @@ class Players: Hashable, Identifiable {
                         if match.points.keys.contains(name) {
                             if !match.winner.keys.contains(name) {
                                 
-                                let winingPlayers = Array(match.points.keys).filter { $0 != name}
-                                for winingPlayer in winingPlayers {
-                                    oponentsWithWhomPlayerLost.append(winingPlayer)
+                                let winningPlayers = Array(match.points.keys).filter { $0 != name}
+                                for winningPlayer in winningPlayers {
+                                    opponentsWithWhomPlayerLost.append(winningPlayer)
                                 }
                             }
                         }
                     }
                 }
             }
-            let uniqueOponents = Set(oponentsWithWhomPlayerLost)
-            for uniqueOponent in uniqueOponents {
+            let uniqueOpponents = Set(opponentsWithWhomPlayerLost)
+            for uniqueOpponent in uniqueOpponents {
                 
-                let numberOfLostGamesWithUniqueOponent = oponentsWithWhomPlayerLost.filter { $0 == uniqueOponent }.count
-                lostMatchesAgainstRival[uniqueOponent] = numberOfLostGamesWithUniqueOponent
+                let numberOfLostGamesWithUniqueOpponent = opponentsWithWhomPlayerLost.filter { $0 == uniqueOpponent }.count
+                lostMatchesAgainstRival[uniqueOpponent] = numberOfLostGamesWithUniqueOpponent
                 
             }
             

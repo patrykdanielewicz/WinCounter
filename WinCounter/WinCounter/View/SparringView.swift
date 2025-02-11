@@ -20,16 +20,16 @@ struct SparringView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(sparrings) { sparing in
+                ForEach(sparrings) { sparring in
                     NavigationLink {
-                        MatchesView(sparring: sparing)
+                        MatchesView(sparring: sparring)
                     } label: {
-                        Text("\(sparing.date, format: .dateTime.day().month(.wide).year())")
+                        Text("\(sparring.date, format: .dateTime.day().month(.wide).year())")
                         
                     }
                     .swipeActions {
                         Button("Delete", role: .destructive) {
-                            modelContext.delete(sparing)
+                            modelContext.delete(sparring)
                             do {
                                  try modelContext.save()
                             }

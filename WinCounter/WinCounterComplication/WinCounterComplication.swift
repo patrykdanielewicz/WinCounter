@@ -40,7 +40,7 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-//    let emoji: String
+
 }
 
 struct WinCounterComplicationEntryView : View {
@@ -48,7 +48,8 @@ struct WinCounterComplicationEntryView : View {
 
     var body: some View {
         VStack {
-            Image(systemName: "plus") // Ikona aplikacji
+            Image("AWComplicationIkon")
+                .frame(width: 20, height: 20)// Ikona aplikacji
                        
                  
 

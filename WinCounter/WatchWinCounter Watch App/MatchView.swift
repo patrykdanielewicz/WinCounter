@@ -168,7 +168,7 @@ struct MatchView: View {
                                 else {
                                     winner[selectedPlayers[1].name] = scorePlayer2
                                 }
-        
+        print(points)
                                 let match = Matches(sparring: sparring, matchNumber: matchNumber, points: points, winner: winner)
                             
         return match

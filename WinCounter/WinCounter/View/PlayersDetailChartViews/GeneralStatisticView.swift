@@ -18,9 +18,9 @@ struct GeneralStatisticView: View {
         VStack {
 
             HStack(alignment: .center) {
-                Chart(dataChartForTotalStatistic, id: \.lable) { dataItem in
+                Chart(dataChartForTotalStatistic, id: \.label) { dataItem in
                     SectorMark(angle: .value("label", dataItem.value), innerRadius: .ratio(0.8))
-                        .foregroundStyle(by: .value("Total", dataItem.lable))
+                        .foregroundStyle(by: .value("Total", dataItem.label))
                     
                 }
                 .chartLegend(.hidden)

@@ -13,7 +13,7 @@ struct MatchEditingView: View {
     @Environment(\.dismiss)      var dismiss
 
     var match: Matches
-    var sparing: Sparring
+    var sparring: Sparring
     
     @State var players         = [Players]()
     @State private var score   = [Int]()
@@ -97,7 +97,7 @@ struct MatchEditingView: View {
             for player in match.points {
                 playersNameArray.append(player.key)
             }
-            if let pla = sparing.players {
+            if let pla = sparring.players {
                 let playersArray = pla.filter {playersNameArray.contains($0.name)}
                 
                 for p in playersArray {
