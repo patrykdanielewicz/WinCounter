@@ -30,6 +30,9 @@ struct PlayersImageInsertOptions: View {
     @Binding  var selectedImage: UIImage
     @Binding var showInsertImageOptions: Bool
     @State var showCamera = false
+    @State var showCircleCropper = false
+   
+    
     
     var body: some View {
         NavigationStack {
@@ -54,23 +57,26 @@ struct PlayersImageInsertOptions: View {
          
             .presentationDetents([.fraction(0.2)])
             .onChange(of: selectedImage) {
-                showInsertImageOptions = false
+//                showInsertImageOptions = false
             }
             .onChange(of: selectedItem) {
                 if let selectedItemToData = selectedItem {
                     converToUIIImage(selectetItem: selectedItemToData)
-                    
+                    showCircleCropper = true
                 }
             }
             .onChange(of: selectedCameraImage) {
                 if let selectedCameraImage = selectedCameraImage {
                     selectedImage = selectedCameraImage
+                    showCircleCropper = true
                 }
             }
             .fullScreenCover(isPresented: $showCamera) {
                 ImagePickerView(selectedImage: $selectedCameraImage)
             }
-            
+            .fullScreenCover(isPresented: $showCircleCropper) {
+                CircleCropperView(image: $selectedImage)
+            }
         }
         
         .tint(.brandPrimary)

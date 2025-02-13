@@ -28,7 +28,7 @@ struct AddNewPlayer: View {
                     Image(uiImage: playersImage)
                         .resizable()
                         .clipShape(Circle())
-                        .frame(width: 150, height: 200)
+                        .frame(width: 300, height: 300)
                         .scaledToFill()
                 }
                 

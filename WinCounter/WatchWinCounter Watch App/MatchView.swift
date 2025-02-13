@@ -89,7 +89,7 @@ struct MatchView: View {
                                         Image(uiImage: uiiImage)
                                             .resizable()
                                             .scaledToFill()
-                                            .frame(width: 75, height: 100)
+                                            .frame(width: 100, height: 100)
                                             .clipShape(.circle)
                                             .overlay(
                                                 Circle().stroke(Color.brand, lineWidth: 2))
