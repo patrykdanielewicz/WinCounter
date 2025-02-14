@@ -15,7 +15,7 @@ struct MatchesPlayedView: View {
     @Binding var matchNumber: Int
     
     var body: some View {
-        List {
+
             Section("Matches played") {
                 if let matches = sparring.matches {
                     ForEach(matches, id: \.self) { match in
@@ -45,7 +45,6 @@ struct MatchesPlayedView: View {
                     }
                 }
             }
-        }
     }
 }
 

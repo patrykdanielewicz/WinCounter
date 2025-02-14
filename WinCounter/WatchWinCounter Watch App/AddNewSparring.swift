@@ -19,6 +19,7 @@ struct AddNewSparring: View {
     
 
     @State private var lessThenTwoPlayers = false
+    @Binding var newSparringAdded: Bool
 
     
     var body: some View {
@@ -40,7 +41,7 @@ struct AddNewSparring: View {
                                                 Image(uiImage: uiImage)
                                                     .resizable()
                                                     .scaledToFill()
-                                                    .frame(width: 20, height: 20)
+                                                    .frame(width: 10, height: 10)
                                                     .clipShape(.circle)
                                             }
                                         }
@@ -91,7 +92,9 @@ struct AddNewSparring: View {
                                 print(error.localizedDescription)
                             }
 
+                            newSparringAdded = true
                             dismiss()
+                            
                          
                         }
 

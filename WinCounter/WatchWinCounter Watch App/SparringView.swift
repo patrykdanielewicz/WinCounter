@@ -12,11 +12,14 @@ struct SparringView: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \Sparring.date, order: .reverse) var sparrings : [Sparring]
     
+    @State private var newSparringAdded = false
+    @State private var latestSparring: Sparring?
+    
     var body: some View {
     
         NavigationStack {
             NavigationLink("Add sparring") {
-                AddNewSparring()
+                AddNewSparring(newSparringAdded: $newSparringAdded)
             }
             List() {
                 ForEach(sparrings) { sparring in
@@ -34,8 +37,6 @@ struct SparringView: View {
             .frame(maxHeight: .infinity)
             .navigationTitle("Sparrings")
             .navigationBarTitleDisplayMode(.inline)
-            
-          
         }
    
        

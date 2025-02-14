@@ -28,13 +28,13 @@ struct AddingScoreToMatch: View {
                               Image(uiImage: uiImage)
                                   .resizable()
                                   .scaledToFill()
-                                  .frame(width: 50, height: 50)
+                                  .frame(width: 60, height: 60)
                                   .clipShape(.circle)
                           } } else {
                               Image(.player0)
                           }
                       Text(player.name)
-//                      Spacer()
+                          .frame(width: 100, alignment: .leading)
                       
                           HStack {
                               VStack {

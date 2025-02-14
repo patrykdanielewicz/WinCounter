@@ -25,17 +25,19 @@ struct MatchEditingView: View {
                 List() {
                     ForEach(players, id: \.self) { player in
                         HStack {
-                            VStack {
+                            HStack {
                                 if let data = player.image {
                                     if let uiimage = UIImage(data: data) {
                                         Image(uiImage: uiimage)
                                             .resizable()
                                             .scaledToFill()
-                                            .frame(width: 50, height: 50)
+                                            .frame(width: 70, height: 70)
                                             .clipShape(.circle)
                                     }
                                 }
                                 Text(player.name)
+                                    .frame(width: 100, alignment: .leading)
+
                             }
                             
                             Picker("score", selection: $score[players.firstIndex(of: player)!]) {

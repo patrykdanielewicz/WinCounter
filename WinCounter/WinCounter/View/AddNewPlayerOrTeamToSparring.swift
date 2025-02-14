@@ -36,22 +36,24 @@ struct AddNewPlayerOrTeamToSparring: View {
                                 Button {
                                     addingPlayersforSparring(for: player)
                                 } label: {
-                                    if let image = player.image {
-                                        if let uiImage = UIImage(data: image) {
-                                            Image(uiImage: uiImage)
-                                                .resizable()
-                                                .scaledToFill()
-                                                .frame(width: 50, height: 50)
-                                                .clipShape(.circle)
-                                        } } else {
-                                            Image(.player0)
+                                    HStack {
+                                        if let image = player.image {
+                                            if let uiImage = UIImage(data: image) {
+                                                Image(uiImage: uiImage)
+                                                    .resizable()
+                                                    .scaledToFill()
+                                                    .frame(width: 50, height: 50)
+                                                    .clipShape(.circle)
+                                            } } else {
+                                                Image(.player0)
+                                            }
+                                        
+                                        Text(player.name)
+                                        Spacer()
+                                        if selectedPlayers.contains(player) {
+                                            Image(systemName: "checkmark")
+                                                .foregroundColor(Color.green)
                                         }
-                                    
-                                    Text(player.name)
-                                    Spacer()
-                                    if selectedPlayers.contains(player) {
-                                        Image(systemName: "checkmark")
-                                            .foregroundColor(Color.green)
                                     }
                                 }
                             }
@@ -94,8 +96,6 @@ struct AddNewPlayerOrTeamToSparring: View {
                                 }
                             }
                         }
-                        
-                        // x
                     }
                     Button("Add new Team") {
                         isAddNewTeamButtonPresed.toggle()
@@ -106,6 +106,7 @@ struct AddNewPlayerOrTeamToSparring: View {
                 
             }
             .navigationTitle("Add new player or team")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Add new player or team", systemImage: "checkmark.circle.fill") {
@@ -143,6 +144,6 @@ struct AddNewPlayerOrTeamToSparring: View {
     
 }
 
-#Preview {
-    AddNewSparring()
-}
+//#Preview {
+//    AddNewSparring()
+//}

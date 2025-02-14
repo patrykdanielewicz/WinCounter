@@ -42,12 +42,9 @@ struct MatchesView: View {
                                 }
                             }
                         }
+                        MatchesPlayedView(sparring: $sparring, matchNumber: $matchNumber)
                         
-                    }
-                        
-                    MatchesPlayedView(sparring: $sparring, matchNumber: $matchNumber)
-                        
-                        Button {
+                        Button() {
                             sparring.isSparringEnded.toggle()
                             do {
                                 try modelContext.save()
@@ -55,21 +52,21 @@ struct MatchesView: View {
                                 print("Błąd zapisu: \(error.localizedDescription)")
                             }
                         } label: {
-                            if sparring.isSparringEnded == false {
-                                Text("End sparring")
-                            }
-                            else {
-                                Text("Edit sparring")
-                            }
+                            Text(sparring.isSparringEnded ? "Edit sparring" : "End sparring")
+                                    .frame(maxWidth: .infinity)
+                                    .multilineTextAlignment(.center)
                         }
                         .buttonStyle(.borderless)
-                    
-                    
-                    
+                      
+                        
+                    }
+                        
+                        
                     
                 }
-                CheckmarkView(showCheckmark: $showCheckmark)
-              
+                    CheckmarkView(showCheckmark: $showCheckmark)
+                    
+                
             }
         }
         .navigationTitle("Matches")
