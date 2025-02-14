@@ -19,8 +19,9 @@ struct AddNewSparring: View {
     
 
     @State private var lessThenTwoPlayers = false
+    
     @Binding var newSparringAdded: Bool
-
+    @State private var sparring: Sparring?
     
     var body: some View {
         NavigationStack {
@@ -41,7 +42,7 @@ struct AddNewSparring: View {
                                                 Image(uiImage: uiImage)
                                                     .resizable()
                                                     .scaledToFill()
-                                                    .frame(width: 10, height: 10)
+                                                    .frame(width: 30, height: 30)
                                                     .clipShape(.circle)
                                             }
                                         }
@@ -83,19 +84,20 @@ struct AddNewSparring: View {
                                 lessThenTwoPlayers.toggle()
                                 return
                             }
-                            let sparring = Sparring(date: sparringDate, players: selectedPlayers)
-                            modelContext.insert(sparring)
-                            do {
-                                try modelContext.save()
+                            sparring = Sparring(date: sparringDate, players: selectedPlayers)
+                            if let sparring = sparring {
+                                modelContext.insert(sparring)
+                                do {
+                                    try modelContext.save()
+                                }
+                                catch {
+                                    print(error.localizedDescription)
+                                }
+                                
+                                newSparringAdded = true
+                                
+                                
                             }
-                            catch {
-                                print(error.localizedDescription)
-                            }
-
-                            newSparringAdded = true
-                            dismiss()
-                            
-                         
                         }
 
                     }
@@ -106,11 +108,12 @@ struct AddNewSparring: View {
 
                 
             }
+            .navigationDestination(isPresented: $newSparringAdded) {
+                if let sparring = sparring {
+                    AddNewMatchView(sparring: sparring)
+                }
+            }
             .navigationTitle("Add new Sparring")
-//            .toolbar {
-//                ToolbarItem(placement: .topBarTrailing) {
-//                }
-//            }
         }
   
         .alert("Not enought players or teams", isPresented: $lessThenTwoPlayers) {

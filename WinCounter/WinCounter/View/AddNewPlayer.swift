@@ -77,6 +77,26 @@ struct AddNewPlayer: View {
 
     }
     
+    func savePlayer() {
+        if name.count < 2 {
+            notEnoughCaractersInName = true
+            return
+        }
+        if playersImage == UIImage(named: "add_new_pictures_placeholder") {
+            playersImage = UIImage(named: "player0")!
+        }
+        if let dataImage = playersImage.jpegData(compressionQuality: 0.6) {
+                let player = Players(singels: true, name: name, image: dataImage)
+                modelContext.insert(player)
+                do {
+                    try modelContext.save()
+                }
+                catch {
+                    print(error.localizedDescription)
+                }
+            }
+    }
+    
     func converToUIIImage(selectetItem: PhotosPickerItem) {
         
         Task {

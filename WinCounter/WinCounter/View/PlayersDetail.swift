@@ -70,6 +70,7 @@ struct PlayersDetail: View {
         if selectedImage != UIImage(named: "player0") {
             if let data = selectedImage.pngData() {
                 player.image = data
+                modelContext.insert(player)
                 do {
                     try modelContext.save()
                 }

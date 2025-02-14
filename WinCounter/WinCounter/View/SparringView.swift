@@ -11,7 +11,7 @@ struct SparringView: View {
     
     @Environment(\.modelContext) var modelContext
     
-    @Query var sparrings: [Sparring]
+    @Query(sort: \Sparring.date, order: .reverse) var sparrings: [Sparring]
 
     
     @State private var isAddNewSparringPresented: Bool = false

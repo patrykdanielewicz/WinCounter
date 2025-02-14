@@ -9,10 +9,13 @@ import SwiftUI
 
 struct AddNewMatchView: View {
     
+    @Environment(\.dismiss) var dissmis
+    
     @State var sparring: Sparring
     @State var selectedPlayers = [Players]()
     @State var isTwoPlayersOrTeamSelected = false
     @State private var startMatch = false
+    @State private var endMatches = false
 
     
     var body: some View {
@@ -32,7 +35,7 @@ struct AddNewMatchView: View {
                                                 .resizable()
                                                 .scaledToFit()
                                                 .clipShape(Circle())
-                                                .frame(width: 50, height: 50)
+                                                .frame(width: 30, height: 30)
                                             
                                         }
                                     }
@@ -56,11 +59,19 @@ struct AddNewMatchView: View {
                         } label: {
                             Text("Start game")
                         }
+                        Button {
+                            endMatches = true
+                        } label: {
+                            Text("End matches")
+                        }
                     }
                 }
             }
             .navigationDestination(isPresented: $startMatch, destination: {
                 MatchView(sparring: sparring, selectedPlayers: selectedPlayers)
+            })
+            .navigationDestination(isPresented: $endMatches, destination: {
+                SparringView()
             })
             .alert("Two players or team only", isPresented: $isTwoPlayersOrTeamSelected) {
                 Button("OK") {
