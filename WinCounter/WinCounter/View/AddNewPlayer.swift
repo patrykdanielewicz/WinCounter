@@ -28,7 +28,7 @@ struct AddNewPlayer: View {
                     Image(uiImage: playersImage)
                         .resizable()
                         .clipShape(Circle())
-                        .frame(width: 150, height: 200)
+                        .frame(width: 200, height: 200)
                         .scaledToFill()
                 }
                 
@@ -57,7 +57,7 @@ struct AddNewPlayer: View {
                         if playersImage == UIImage(named: "add_new_pictures_placeholder") {
                             playersImage = UIImage(named: "player0")!
                         }
-                        if let dataImage = playersImage.jpegData(compressionQuality: 0.8) {
+                        if let dataImage = playersImage.jpegData(compressionQuality: 0.6) {
                                 let player = Players(singels: true, name: name, image: dataImage)
                                 modelContext.insert(player)
                                 do {

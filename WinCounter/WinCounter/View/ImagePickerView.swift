@@ -18,6 +18,7 @@ struct ImagePickerView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .camera
+        imagePicker.allowsEditing = false
         imagePicker.delegate = context.coordinator
         return imagePicker
     }
@@ -40,7 +41,7 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let orginalImage = info[.originalImage] as? UIImage else { return }
-        guard let compressedImage = orginalImage.jpegData(compressionQuality: 0.8) else { return }
+        guard let compressedImage = orginalImage.jpegData(compressionQuality: 0.6) else { return }
         guard let selectedImage = UIImage(data: compressedImage) else { return }
         self.picker.selectedImage = selectedImage
         self.picker.dissmis()
