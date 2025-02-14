@@ -17,7 +17,7 @@ struct CircleCropperView: View {
     @State private var scale: CGFloat = 1.0
     @State private var lastOffset: CGSize = .zero
     @State private var lastScale: CGFloat = 1.0
-    
+    @Binding var showInsertImageOptions: Bool
     
     
     
@@ -60,6 +60,7 @@ struct CircleCropperView: View {
                            Spacer()
                            Button("Done") {
                                saveCroppedImage()
+    
                            }
                            .padding()
                            .background(Color.blue)
@@ -75,6 +76,7 @@ struct CircleCropperView: View {
           if let croppedImage = createCircularCroppedImage(from: originalImage, offset: offset, scale: scale, cropSize: cropSize) {
               image = croppedImage
           }
+        showInsertImageOptions = false
           dismiss()
       }
     

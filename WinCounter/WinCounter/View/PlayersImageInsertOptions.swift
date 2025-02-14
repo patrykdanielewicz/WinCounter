@@ -57,7 +57,6 @@ struct PlayersImageInsertOptions: View {
          
             .presentationDetents([.fraction(0.2)])
             .onChange(of: selectedImage) {
-                showInsertImageOptions = false
                 showCircleCropper = true
             }
             .onChange(of: selectedItem) {
@@ -75,7 +74,7 @@ struct PlayersImageInsertOptions: View {
                 ImagePickerView(selectedImage: $selectedCameraImage)
             }
             .fullScreenCover(isPresented: $showCircleCropper) {
-                CircleCropperView(image: $selectedImage)
+                CircleCropperView(image: $selectedImage, showInsertImageOptions: $showInsertImageOptions)
             }
         }
         
