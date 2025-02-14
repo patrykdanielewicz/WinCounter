@@ -57,18 +57,18 @@ struct PlayersImageInsertOptions: View {
          
             .presentationDetents([.fraction(0.2)])
             .onChange(of: selectedImage) {
-//                showInsertImageOptions = false
+                showInsertImageOptions = false
+                showCircleCropper = true
             }
             .onChange(of: selectedItem) {
                 if let selectedItemToData = selectedItem {
                     converToUIIImage(selectetItem: selectedItemToData)
-                    showCircleCropper = true
                 }
             }
             .onChange(of: selectedCameraImage) {
                 if let selectedCameraImage = selectedCameraImage {
                     selectedImage = selectedCameraImage
-                    showCircleCropper = true
+        
                 }
             }
             .fullScreenCover(isPresented: $showCamera) {
