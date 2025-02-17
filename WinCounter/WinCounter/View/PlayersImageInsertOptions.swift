@@ -40,7 +40,7 @@ struct PlayersImageInsertOptions: View {
                 PhotosPicker(selection: $selectedItem, matching: .images) {
                     HStack {
                         Image(systemName: "photo")
-                        Text("Choose from libray")
+                        Text("Choose from library")
                     }
                 }
                 Button {
@@ -48,7 +48,7 @@ struct PlayersImageInsertOptions: View {
                 } label: {
                     HStack {
                         Image(systemName: "camera")
-                        Text("Take a pictures")
+                        Text("Take a picture")
                     }
                 }
             }

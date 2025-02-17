@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "addPicture.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "add_new_pictures_placeholder.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

@@ -49,7 +49,7 @@ struct SparringView: View {
                 }
             })
             .navigationDestination(isPresented: $isNewSparringAdded) {
-                if let sparring = sparrings.last {
+                if let sparring = sparrings.first {
                     MatchesView(sparring: sparring)
                 }
             }

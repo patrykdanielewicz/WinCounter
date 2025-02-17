@@ -8,13 +8,14 @@ import SwiftData
 import SwiftUI
 import PhotosUI
 
-struct AddNewPlayer: View {
+struct EditPlayer: View {
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
 
-    @State private var name: String = ""
-    @State var playersImage: UIImage = UIImage(named: "addPicture")!
+    @State  var player: Players
+    @State private var selectedImage = UIImage(named: "player0")!
+    
     @State var selectedNumber: Int = 0
     @State private var showImageInsertOptions: Bool = false
     @State private var notEnoughCaractersInName: Bool = false
@@ -25,40 +26,44 @@ struct AddNewPlayer: View {
                 Button {
                     showImageInsertOptions.toggle()
                 } label: {
-                    Image(uiImage: playersImage)
-                        .resizable()
-                        .clipShape(Circle())
-                        .frame(width: 200, height: 200)
-                        .scaledToFill()
+                        Image(uiImage: unwrappingOptionalDataImage(image: player.image))
+                            .resizable()
+                            .clipShape(Circle())
+                            .frame(width: 200, height: 200)
+                            .scaledToFill()
+                    
                 }
                 
                 Form {
-                    TextField("Enter Player's name", text: $name)
+                    TextField("Enter Player's name", text: $player.name)
                 }
                 Spacer()
             }
+            
+            
             .sheet(isPresented: $showImageInsertOptions) {
-                PlayersImageInsertOptions(selectedImage: $playersImage, showInsertImageOptions: $showImageInsertOptions)
+                PlayersImageInsertOptions(selectedImage: $selectedImage, showInsertImageOptions: $showImageInsertOptions)
             }
             .alert("Name is too short", isPresented: $notEnoughCaractersInName) {
                 Button("OK") { }
             } message: {
                 Text("The name must have at least two characters.")
             }
+            .onChange(of: selectedImage) {
+                changeProfilePictures()
+            }
             .navigationTitle("Add new Player")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save", systemImage: "person.fill.checkmark") {
-                        if name.count < 2 {
+                        if player.name.count < 2 {
                             notEnoughCaractersInName = true
                             return
                         }
-                        if playersImage == UIImage(named: "addPicture") {
-                            playersImage = UIImage(named: "player0")!
-                        }
-                        if let dataImage = playersImage.jpegData(compressionQuality: 0.6) {
-                                let player = Players(singels: true, name: name, image: dataImage)
+                   
+                        if let dataImage = unwrappingOptionalDataImage(image: player.image).jpegData(compressionQuality: 0.6) {
+                            let player = Players(singels: true, name: player.name, image: dataImage)
                                 modelContext.insert(player)
                                 do {
                                     try modelContext.save()
@@ -73,20 +78,15 @@ struct AddNewPlayer: View {
                     .tint(.brandPrimary)
                 }
             }
+            
         }
 
     }
-    
-    func savePlayer() {
-        if name.count < 2 {
-            notEnoughCaractersInName = true
-            return
-        }
-        if playersImage == UIImage(named: "addPicture") {
-            playersImage = UIImage(named: "player0")!
-        }
-        if let dataImage = playersImage.jpegData(compressionQuality: 0.6) {
-                let player = Players(singels: true, name: name, image: dataImage)
+
+    func changeProfilePictures() {
+        if selectedImage != UIImage(named: "player0") {
+            if let data = selectedImage.pngData() {
+                player.image = data
                 modelContext.insert(player)
                 do {
                     try modelContext.save()
@@ -94,25 +94,21 @@ struct AddNewPlayer: View {
                 catch {
                     print(error.localizedDescription)
                 }
+                
             }
+            }
+        
+    }
+    func unwrappingOptionalDataImage(image: Data?) -> UIImage {
+        if let dataImage = image {
+            if let uiImage = UIImage(data: dataImage) {
+                return uiImage
+            }
+            return UIImage(named: "player0")!
+        }
+        return UIImage(named: "player0")!
     }
     
-    func converToUIIImage(selectetItem: PhotosPickerItem) {
-        
-        Task {
-            do {
-                if let data = try await selectetItem.loadTransferable(type: Data.self) {
-                    if let  uiImage = UIImage(data: data) {
-                        playersImage = uiImage
-
-                    }
-                }
-            }
-            catch {
-                print(error.localizedDescription)
-            }
-        }
-    }
 
 }
 

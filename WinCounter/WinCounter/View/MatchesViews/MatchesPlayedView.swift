@@ -15,10 +15,8 @@ struct MatchesPlayedView: View {
     @Binding var matchNumber: Int
     
     var body: some View {
-
-            Section("Matches played") {
                 if let matches = sparring.matches {
-                    ForEach(matches, id: \.self) { match in
+                    ForEach(matches.sorted(by: { $0.matchNumber > $1.matchNumber } ), id: \.self) { match in
                         NavigationLink {
                             MatchEditingView(match: match, sparring: sparring)
                         } label: {
@@ -44,7 +42,7 @@ struct MatchesPlayedView: View {
                         }
                     }
                 }
-            }
+            
     }
 }
 

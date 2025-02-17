@@ -14,7 +14,6 @@ struct PlayersDetail: View {
     @Environment(\.modelContext) private var modelContext
     
     @State var player: Players
-    @State private var editProfilePictures = false
     @State private var selectedImage = UIImage(named: "player0")!
     
     
@@ -28,9 +27,7 @@ struct PlayersDetail: View {
                             .scaledToFill()
                             .frame(width: 150, height: 150)
                             .clipShape(.circle)
-                            .onTapGesture {
-                                editProfilePictures = true
-                            }
+                       
                     } else {
                         Image(.player0)
                     }
@@ -51,36 +48,19 @@ struct PlayersDetail: View {
                         Section("You vs Your Rivals") {
                             PlayerVsRivalsChartView(player: player)
                         }
-                        
                     }
                 }
             }
-            .sheet(isPresented: $editProfilePictures) {
-                PlayersImageInsertOptions(selectedImage: $selectedImage, showInsertImageOptions: $editProfilePictures)
-            }
-            .onChange(of: selectedImage) {
-                changeProfilePictures()
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        EditPlayer(player: player)
+                    } label: {
+                        Text("Edit")
+                    }
+                }
             }
         }
-
-    }
-
-
-    func changeProfilePictures() {
-        if selectedImage != UIImage(named: "player0") {
-            if let data = selectedImage.pngData() {
-                player.image = data
-                modelContext.insert(player)
-                do {
-                    try modelContext.save()
-                }
-                catch {
-                    print(error.localizedDescription)
-                }
-                
-            }
-            }
-        
     }
     
     //#Preview {

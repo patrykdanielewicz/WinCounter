@@ -42,8 +42,9 @@ struct MatchesView: View {
                                 }
                             }
                         }
-                        MatchesPlayedView(sparring: $sparring, matchNumber: $matchNumber)
-                        
+                        Section("Matches played") {
+                            MatchesPlayedView(sparring: $sparring, matchNumber: $matchNumber)
+                        }
                         Button() {
                             sparring.isSparringEnded.toggle()
                             do {
