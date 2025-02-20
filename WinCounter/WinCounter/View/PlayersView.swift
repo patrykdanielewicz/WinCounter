@@ -9,20 +9,18 @@ import SwiftUI
 
 struct PlayersView: View {
     
-    @Environment(\.modelContext) var modelContext
-    
-    @Query(filter: #Predicate<Players> { player in
-        player.singels == true
-    }) var players: [Players]
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var players: FetchedResults<Player>
+  
     
     @State private var isAddNewPlayerPresented = false
     
     var body: some View {
         NavigationStack {
             List {
-                ForEach(players) { player in
+                ForEach(players, id: \.self) { player in
                     NavigationLink {
-                        PlayersDetail(player: player)
+//                        PlayersDetail(player: player)
                     } label: {
                         HStack {
                             if let image = player.image {
@@ -35,23 +33,23 @@ struct PlayersView: View {
                                 } else {
                                     Image(.player0)
                                 }
-                                Text(player.name)
+                                Text(player.wrappedName)
                             } }
                         
                     }
-                    .swipeActions {
-                        Button("Delete", role: .destructive) {
-                            modelContext.delete(player)
-                            do {
-                                 try modelContext.save()
-                            }
-                            catch {
-                                print(error.localizedDescription)
-                            }
-
-                        }
-                        .tint(.red)
-                    }
+//                    .swipeActions {
+//                        Button("Delete", role: .destructive) {
+//                            modelContext.delete(player)
+//                            do {
+//                                 try modelContext.save()
+//                            }
+//                            catch {
+//                                print(error.localizedDescription)
+//                            }
+//
+//                        }
+//                        .tint(.red)
+//                    }
                 }
             }
             .listStyle(PlainListStyle())

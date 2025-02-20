@@ -24,7 +24,6 @@ struct CheckmarkView: View {
                 
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-//            .background(Color.black.opacity(0.4)) // Półprzezroczyste tło
             .edgesIgnoringSafeArea(.all)
             .animation(.easeInOut, value: showCheckmark)
         }

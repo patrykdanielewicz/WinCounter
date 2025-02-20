@@ -4,11 +4,12 @@
 //
 //  Created by Patryk Danielewicz on 21/01/2025.
 //
-
+import CoreData
 import SwiftUI
 
 struct AddingScoreToMatch: View {
     
+    @Environment(\.managedObjectContext) var moc
     
     
     @State var sparring: Sparring
@@ -20,11 +21,11 @@ struct AddingScoreToMatch: View {
     var body: some View {
 
       VStack {
-          if let players = sparring.players {
-              ForEach(players.sorted { $0.name < $1.name }, id: \.self) { player in
+          ForEach(sparring.wrappedPlayers, id: \.self) { player in
+              let score: Int = 0
                   HStack {
-                      if let image = player.image {
-                          if let uiImage = UIImage(data: image) {
+                      if let dataImage = player.image {
+                          if let uiImage = UIImage(data: dataImage) {
                               Image(uiImage: uiImage)
                                   .resizable()
                                   .scaledToFill()
@@ -33,7 +34,7 @@ struct AddingScoreToMatch: View {
                           } } else {
                               Image(.player0)
                           }
-                      Text(player.name)
+                      Text(player.wrappedName)
                           .frame(width: 100, alignment: .leading)
                       
                           HStack {
@@ -53,30 +54,30 @@ struct AddingScoreToMatch: View {
                               }
                               Button {
                                   
-                                  clickState[player.name, default: false].toggle()
-                                  if clickState[player.name] == true {
-                                      playersPlayedScore[player.name] = 0
+                                  clickState[player.wrappedName, default: false].toggle()
+                                  if clickState[player.wrappedName] == true {
+                                      playersPlayedScore[player.wrappedName] = 0
                                   }
                                   else {
-                                      playersPlayedScore.removeValue(forKey: player.name)
+                                      playersPlayedScore.removeValue(forKey: player.wrappedName)
                                   }
                                   
                                   
                               } label: {
                                   
-                                  Image(systemName: clickState[player.name, default: false] ? "person.fill.checkmark" : "person.slash.fill")
+                                  Image(systemName: clickState[player.wrappedName, default: false] ? "person.fill.checkmark" : "person.slash.fill")
                                   
                               }
                               .buttonStyle(.plain)
                               .frame(width: 33, height: 33)
-                              .disabled(clickState[player.name, default: false] == false && clickState.values.filter { $0 }.count >= 2)
+                              .disabled(clickState[player.wrappedName, default: false] == false && clickState.values.filter { $0 }.count >= 2)
                           }
 //                          .frame(width: 180)
                       
                     
                   }
               }
-          }
+          
       }
         
     }

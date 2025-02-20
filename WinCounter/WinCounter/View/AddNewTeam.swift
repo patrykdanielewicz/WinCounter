@@ -4,22 +4,22 @@
 //
 //  Created by Patryk Danielewicz on 20/01/2025.
 //
-
-import SwiftData
+//
+import CoreData
 import SwiftUI
 import PhotosUI
 
 struct AddNewTeam: View {
     
     @Environment(\.dismiss) var dismiss
-    @Environment(\.modelContext) var modelContext
+    @Environment(\.managedObjectContext) var moc
 
     @State private var name: String = ""
     @State private var players1name = ""
     @State private var players2name = ""
     
     
-    @State var playersImage: UIImage = UIImage(named: "add_new_pictures_placeholder")!
+    @State var teamImage: UIImage? = UIImage(named: "addPicture")
     @State var selectedNumber: Int = 0
     @State private var showImageInsertOptions: Bool = false
     @State private var notEnoughCaractersInName: Bool = false
@@ -30,11 +30,13 @@ struct AddNewTeam: View {
                 Button {
                     showImageInsertOptions.toggle()
                 } label: {
-                    Image(uiImage: playersImage)
-                        .resizable()
-                        .clipShape(Circle())
-                        .frame(width: 200, height: 200)
-                        .scaledToFill()
+                    if let teamImage = teamImage {
+                        Image(uiImage: teamImage)
+                            .resizable()
+                            .clipShape(Circle())
+                            .frame(width: 200, height: 200)
+                            .scaledToFill()
+                    }
                 }
                 
                 Form {
@@ -50,9 +52,9 @@ struct AddNewTeam: View {
                 Text("The name must have at least two characters.")
             }
             .sheet(isPresented: $showImageInsertOptions) {
-                PlayersImageInsertOptions(selectedImage: $playersImage, showInsertImageOptions: $showImageInsertOptions)
+                PlayersImageInsertOptions(selectedImage: $teamImage, showInsertImageOptions: $showImageInsertOptions)
             }
-            .navigationTitle("Add new Player")
+            .navigationTitle("Add new Team")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -63,21 +65,27 @@ struct AddNewTeam: View {
                             return
                         }
                         
-                        if playersImage == UIImage(named: "add_new_pictures_placeholder") {
-                            playersImage = UIImage(named: "player0")!
+                        if teamImage == UIImage(named: "addPicture") {
+                            teamImage = UIImage(named: "player0")!
                         }
-                        if let dataImage = playersImage.pngData() {
-                            let player = Players(singels: false, doublesPlayerNr1: players1name, doublesPlayerNr2: players2name, name: name, image: dataImage)
-                                modelContext.insert(player)
+                        if let teamImage = teamImage {
+                            if let dataImage = teamImage.jpegData(compressionQuality: 0.6) {
+                                let team = Player(context: moc)
+                                team.doubels = true
+                                team.doublesPlayerNr1 = players1name
+                                team.doublesPlayerNr2 = players2name
+                                team.image = dataImage
+                            
                                 do {
-                                    try modelContext.save()
+                                    try moc.save()
                                 }
                                 catch {
                                     print(error.localizedDescription)
                                 }
                             }
-                        
-                        dismiss()
+                            
+                            dismiss()
+                        }
                     }
                     .tint(.brandPrimary)
                 }
@@ -92,7 +100,7 @@ struct AddNewTeam: View {
             do {
                 if let data = try await selectetItem.loadTransferable(type: Data.self) {
                     if let  uiImage = UIImage(data: data) {
-                        playersImage = uiImage
+                        teamImage = uiImage
 
                     }
                 }
@@ -104,7 +112,7 @@ struct AddNewTeam: View {
     }
 
 }
-
-#Preview {
-    AddNewPlayer()
-}
+//
+//#Preview {
+//    AddNewPlayer()
+//}

@@ -27,7 +27,7 @@ struct PlayersImageInsertOptions: View {
 
     @State private var selectedItem: PhotosPickerItem?
     @State private var selectedCameraImage: UIImage?
-    @Binding  var selectedImage: UIImage
+    @Binding  var selectedImage: UIImage?
     @Binding var showInsertImageOptions: Bool
     @State var showCamera = false
     @State var showCircleCropper = false

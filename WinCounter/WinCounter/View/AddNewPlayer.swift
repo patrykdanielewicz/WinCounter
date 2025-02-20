@@ -4,17 +4,17 @@
 //
 //  Created by Patryk Danielewicz on 06/12/2024.
 //
-import SwiftData
+import CoreData
 import SwiftUI
 import PhotosUI
 
 struct AddNewPlayer: View {
     
     @Environment(\.dismiss) var dismiss
-    @Environment(\.modelContext) var modelContext
+    @Environment(\.managedObjectContext) var moc
 
     @State private var name: String = ""
-    @State var playersImage: UIImage = UIImage(named: "addPicture")!
+    @State var playersImage: UIImage? = UIImage(named: "addPicture")
     @State var selectedNumber: Int = 0
     @State private var showImageInsertOptions: Bool = false
     @State private var notEnoughCaractersInName: Bool = false
@@ -25,11 +25,13 @@ struct AddNewPlayer: View {
                 Button {
                     showImageInsertOptions.toggle()
                 } label: {
-                    Image(uiImage: playersImage)
-                        .resizable()
-                        .clipShape(Circle())
-                        .frame(width: 200, height: 200)
-                        .scaledToFill()
+                    if let playersImage = playersImage {
+                        Image(uiImage: playersImage)
+                            .resizable()
+                            .clipShape(Circle())
+                            .frame(width: 200, height: 200)
+                            .scaledToFill()
+                    }
                 }
                 
                 Form {
@@ -57,18 +59,23 @@ struct AddNewPlayer: View {
                         if playersImage == UIImage(named: "addPicture") {
                             playersImage = UIImage(named: "player0")!
                         }
-                        if let dataImage = playersImage.jpegData(compressionQuality: 0.6) {
-                                let player = Players(singels: true, name: name, image: dataImage)
-                                modelContext.insert(player)
+                        if let playersImage = playersImage {
+                            if let dataImage = playersImage.jpegData(compressionQuality: 0.6) {
+                                let player = Player(context: moc)
+                                player.name = name
+                                player.doubels = false
+                                player.image = dataImage
+                                
                                 do {
-                                    try modelContext.save()
+                                    try moc.save()
                                 }
                                 catch {
                                     print(error.localizedDescription)
                                 }
                             }
-                        
-                        dismiss()
+                            
+                            dismiss()
+                        }
                     }
                     .tint(.brandPrimary)
                 }
@@ -77,25 +84,25 @@ struct AddNewPlayer: View {
 
     }
     
-    func savePlayer() {
-        if name.count < 2 {
-            notEnoughCaractersInName = true
-            return
-        }
-        if playersImage == UIImage(named: "addPicture") {
-            playersImage = UIImage(named: "player0")!
-        }
-        if let dataImage = playersImage.jpegData(compressionQuality: 0.6) {
-                let player = Players(singels: true, name: name, image: dataImage)
-                modelContext.insert(player)
-                do {
-                    try modelContext.save()
-                }
-                catch {
-                    print(error.localizedDescription)
-                }
-            }
-    }
+//    func savePlayer() {
+//        if name.count < 2 {
+//            notEnoughCaractersInName = true
+//            return
+//        }
+//        if playersImage == UIImage(named: "addPicture") {
+//            playersImage = UIImage(named: "player0")!
+//        }
+//        if let dataImage = playersImage.jpegData(compressionQuality: 0.6) {
+//                let player = Players(singels: true, name: name, image: dataImage)
+//                modelContext.insert(player)
+//                do {
+//                    try modelContext.save()
+//                }
+//                catch {
+//                    print(error.localizedDescription)
+//                }
+//            }
+//    }
     
     func converToUIIImage(selectetItem: PhotosPickerItem) {
         

@@ -9,13 +9,13 @@ import SwiftUI
 
 struct WinCounterTabView: View {
     
-    @State private var players = [Players]()
+
     
     var body: some View {
         TabView {
                 Tab("Players", systemImage: "person.3") {
-//                    PlayersView()
-                    PlayersGrupsSegmentetPickerView()
+                    PlayersView()
+//                    PlayersGrupsSegmentetPickerView()
                 }
                 Tab("Sparring", systemImage: "sportscourt.fill") {
                     SparringView()

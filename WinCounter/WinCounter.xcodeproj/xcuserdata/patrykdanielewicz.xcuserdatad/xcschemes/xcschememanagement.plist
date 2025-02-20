@@ -9,8 +9,10 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
-		<key>WatchWinCounter Watch App.xcscheme_^#shared#^_</key>
+		<key>WatchWinCounter Watch App.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
@@ -19,8 +21,10 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>WinCounterComplicationExtension.xcscheme_^#shared#^_</key>
+		<key>WinCounterComplicationExtension.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>

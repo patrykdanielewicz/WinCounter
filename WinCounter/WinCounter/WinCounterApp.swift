@@ -11,11 +11,14 @@ import SwiftUI
 @main
 
 struct WinCounterApp: App {
-
+    
+    @StateObject private var dataController = DataController()
+    
     var body: some Scene {
         WindowGroup {
             WinCounterTabView()
-                .modelContainer(for: [Players.self, Sparring.self])
+//                .modelContainer(for: [Players.self, Sparring.self])
+                .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }

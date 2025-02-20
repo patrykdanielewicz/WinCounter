@@ -11,7 +11,7 @@ struct CircleCropperView: View {
     
     @Environment(\.dismiss) var dismiss
     
-    @Binding var image: UIImage
+    @Binding var image: UIImage?
     
     @State private var offset: CGSize = .zero
     @State private var scale: CGFloat = 1.0
@@ -23,6 +23,7 @@ struct CircleCropperView: View {
     
     var body: some View {
         ZStack {
+            if let image = image {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFill()
@@ -39,7 +40,7 @@ struct CircleCropperView: View {
                             .onEnded { _ in
                                 lastOffset = offset
                             }
-                )
+                    )
                     .gesture(
                         MagnificationGesture()
                             .onChanged { value in
@@ -52,33 +53,36 @@ struct CircleCropperView: View {
                     .clipShape(Circle())
                     .frame(width: 300, height: 300)
                     .clipped()
-            
-            Circle()
-                .stroke(Color.white, lineWidth: 2)
-                .frame(width: 300, height: 300)
-            VStack {
-                           Spacer()
-                           Button("Done") {
-                               saveCroppedImage()
-    
-                           }
-                           .padding()
-                           .background(Color.blue)
-                           .foregroundColor(.white)
-                           .cornerRadius(8)
-                       }
+                
+                Circle()
+                    .stroke(Color.white, lineWidth: 2)
+                    .frame(width: 300, height: 300)
+                VStack {
+                    Spacer()
+                    Button("Done") {
+                        saveCroppedImage()
+                        
+                    }
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+                }
+            }
         }
     }
     
     func saveCroppedImage() {
-          let originalImage = image 
-          let cropSize = CGSize(width: 300, height: 300)
-          if let croppedImage = createCircularCroppedImage(from: originalImage, offset: offset, scale: scale, cropSize: cropSize) {
-              image = croppedImage
-          }
-        showInsertImageOptions = false
-          dismiss()
-      }
+        if let wrappedimage = image {
+            let originalImage = wrappedimage
+            let cropSize = CGSize(width: 300, height: 300)
+            if let croppedImage = createCircularCroppedImage(from: originalImage, offset: offset, scale: scale, cropSize: cropSize) {
+                image = croppedImage
+            }
+            showInsertImageOptions = false
+            dismiss()
+        }
+    }
     
     func createCircularCroppedImage(from originalImage: UIImage, offset: CGSize, scale: CGFloat, cropSize: CGSize) -> UIImage? {
         let renderer = UIGraphicsImageRenderer(size: cropSize)

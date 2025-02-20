@@ -4,18 +4,19 @@
 //
 //  Created by Patryk Danielewicz on 18/12/2024.
 //
-import SwiftData
+import CoreData
 import SwiftUI
 
 struct AddNewSparring: View {
     
     @Environment(\.dismiss) var dismiss
-    @Environment(\.modelContext) var modelContext
+    @Environment(\.managedObjectContext) var moc
     
-    @Query var players: [Players]
+    @FetchRequest(sortDescriptors: []) var players: FetchedResults<Player>
+    
     
     @State var sparringDate: Date = Date()
-    @State var selectedPlayers: [Players] = []
+    @State var selectedPlayers: [Player] = []
     
     @State private var isAddNewPlayerButtonPresed = false
     @State private var isAddNewTeamButtonPresed = false
@@ -26,12 +27,10 @@ struct AddNewSparring: View {
         NavigationStack {
             Form {
                 DatePicker("Select a date", selection: $sparringDate, displayedComponents: .date)
-
-                Section("Select players") {
-                    
-                    List() {
-                        ForEach(players) { player in
-                            if player.singels == true {
+                List() {
+                    Section("Select players") {
+                        ForEach(players, id: \.self) { player in
+                            if player.doubels == false {
                                 Button {
                                     addingPlayersforSparring(for: player)
                                 } label: {
@@ -47,7 +46,7 @@ struct AddNewSparring: View {
                                                 Image(.player0)
                                             }
                                         
-                                        Text(player.name)
+                                        Text(player.wrappedName)
                                         Spacer()
                                         if selectedPlayers.contains(player) {
                                             Image(systemName: "checkmark")
@@ -57,53 +56,52 @@ struct AddNewSparring: View {
                                 }
                             }
                         }
+                        
+                        Button("Add new Player") {
+                            isAddNewPlayerButtonPresed.toggle()
+                        }
+                        .frame(maxWidth: .infinity)
+                        
                     }
-                    Button("Add new Player") {
-                        isAddNewPlayerButtonPresed.toggle()
-                    }
-                    .frame(maxWidth: .infinity)
                     
-                }
-                
-                Section("Select team") {
-                    
-                    List() {
-                        ForEach(players) { player in
-                            if player.singels == false {
-                                    Button {
-                                        addingPlayersforSparring(for: player)
-                                    } label: {
-                                        HStack {
-                                            if let image = player.image {
-                                                if let uiImage = UIImage(data: image) {
-                                                    Image(uiImage: uiImage)
-                                                        .resizable()
-                                                        .scaledToFill()
-                                                        .frame(width: 50, height: 50)
-                                                        .clipShape(.circle)
-                                                } } else {
-                                                    Image(.player0)
-                                                }
-                                            
-                                            Text(player.name)
-                                            Spacer()
-                                            if selectedPlayers.contains(player) {
-                                                Image(systemName: "checkmark")
-                                                    .foregroundColor(Color.green)
+                    Section("Select team") {
+                        ForEach(players, id: \.self) { player in
+                            if player.doubels == true {
+                                Button {
+                                    addingPlayersforSparring(for: player)
+                                } label: {
+                                    HStack {
+                                        if let image = player.image {
+                                            if let uiImage = UIImage(data: image) {
+                                                Image(uiImage: uiImage)
+                                                    .resizable()
+                                                    .scaledToFill()
+                                                    .frame(width: 50, height: 50)
+                                                    .clipShape(.circle)
+                                            } } else {
+                                                Image(.player0)
                                             }
+                                        
+                                        Text(player.wrappedName)
+                                        Spacer()
+                                        if selectedPlayers.contains(player) {
+                                            Image(systemName: "checkmark")
+                                                .foregroundColor(Color.green)
                                         }
                                     }
+                                }
                             }
                         }
-
+                        
+                        
+                        Button("Add new Team") {
+                            isAddNewTeamButtonPresed.toggle()
+                        }
+                        .frame(maxWidth: .infinity)
+                        
                     }
-                    Button("Add new Team") {
-                        isAddNewTeamButtonPresed.toggle()
-                    }
-                    .frame(maxWidth: .infinity)
                     
                 }
-                
             }
             .navigationTitle("Add new Sparring")
             .toolbar {
@@ -113,10 +111,13 @@ struct AddNewSparring: View {
                             lessThenTwoPlayers.toggle()
                             return
                         }
-                        let sparring = Sparring(date: sparringDate, players: selectedPlayers)
-                        modelContext.insert(sparring)
+                        let sparring = Sparring(context: moc)
+                        sparring.date = sparringDate
+                        for player in selectedPlayers {
+                            sparring.addToPlayers(player)
+                        }
                         do {
-                            try modelContext.save()
+                            try moc.save()
                         }
                         catch {
                             print(error.localizedDescription)
@@ -133,7 +134,7 @@ struct AddNewSparring: View {
             AddNewPlayer()
         }
         .sheet(isPresented: $isAddNewTeamButtonPresed) {
-            AddNewTeam()
+//            AddNewTeam()
         }
         .alert("Not enought players or teams", isPresented: $lessThenTwoPlayers) {
             Button("Ok") { }
@@ -142,7 +143,7 @@ struct AddNewSparring: View {
         }
 
         }
-    func addingPlayersforSparring(for player: Players) {
+    func addingPlayersforSparring(for player: Player) {
         if let index = selectedPlayers.firstIndex(of: player) {
             selectedPlayers.remove(at: index)
         } else {
@@ -153,6 +154,6 @@ struct AddNewSparring: View {
     
 }
 
-#Preview {
-    AddNewSparring()
-}
+//#Preview {
+//    AddNewSparring()
+//}

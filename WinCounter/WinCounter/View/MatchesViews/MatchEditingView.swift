@@ -4,18 +4,18 @@
 //
 //  Created by Patryk Danielewicz on 22/01/2025.
 //
-
+import CoreData
 import SwiftUI
 
 struct MatchEditingView: View {
     
-    @Environment(\.modelContext) var modelContext
+    @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss)      var dismiss
 
-    var match: Matches
+    var match: Match
     var sparring: Sparring
     
-    @State var players         = [Players]()
+    @State var players         = [Player]()
     @State private var score   = [Int]()
     @State private var isATie  = false
     
@@ -23,10 +23,10 @@ struct MatchEditingView: View {
         NavigationStack {
             VStack {
                 List() {
-                    ForEach(players, id: \.self) { player in
+                    ForEach(match.wrappedPoints, id: \.self) { matchPoints in
                         HStack {
                             HStack {
-                                if let data = player.image {
+                                if let data = matchPoints.wrappedPlayer.image {
                                     if let uiimage = UIImage(data: data) {
                                         Image(uiImage: uiimage)
                                             .resizable()
@@ -35,12 +35,15 @@ struct MatchEditingView: View {
                                             .clipShape(.circle)
                                     }
                                 }
-                                Text(player.name)
+                                Text(matchPoints.wrappedPlayer.name)
                                     .frame(width: 100, alignment: .leading)
 
                             }
                             
-                            Picker("score", selection: $score[players.firstIndex(of: player)!]) {
+                            Picker("score", Binding(
+                                get: { matchPoints.points },
+                                set: { newValue in matchPoints.points = newValue }
+                            )) {
                                 ForEach(0..<30) { value in
                                     Text("\(value)")
                                 }
@@ -89,32 +92,28 @@ struct MatchEditingView: View {
             Text("In badminton, there are no ties – someone must win by a two-point advantage or be the first to score 30 points.")
         }
         .onAppear {
-            playersInMatch()
-            scoreInMatch()
+//            playersInMatch()
+//            scoreInMatch()
         }
     }
     
-    func playersInMatch() {
-        var playersNameArray = [String]()
-            for player in match.points {
-                playersNameArray.append(player.key)
-            }
-            if let pla = sparring.players {
-                let playersArray = pla.filter {playersNameArray.contains($0.name)}
-                
-                for p in playersArray {
-                    players.append(p)
-                }
-            }
-    }
-    func scoreInMatch() {
-        var scoreArray = [Int]()
-            for player in players {
-                scoreArray.append(match.points[player.name]!)
-            }
-            score = scoreArray
-
-    }
+//    func playersInMatch() {
+//        var playersNameArray = [String]()
+//        for playerInMatch in match.wrappedPoints {
+//            players.append(playerInMatch.wrappedPlayer)
+//        }
+//        
+//        
+//        
+//    }
+//    func scoreInMatch() {
+//        var scoreArray = [Int]()
+//            for player in players {
+//                scoreArray.append(match.points[player.name]!)
+//            }
+//            score = scoreArray
+//
+//    }
     
 }
 //#Preview {
