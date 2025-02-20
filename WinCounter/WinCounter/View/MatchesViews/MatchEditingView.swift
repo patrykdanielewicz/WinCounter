@@ -35,21 +35,21 @@ struct MatchEditingView: View {
                                             .clipShape(.circle)
                                     }
                                 }
-                                Text(matchPoints.wrappedPlayer.name)
+                                Text(matchPoints.wrappedPlayer.wrappedName)
                                     .frame(width: 100, alignment: .leading)
 
                             }
                             
-                            Picker("score", Binding(
-                                get: { matchPoints.points },
-                                set: { newValue in matchPoints.points = newValue }
-                            )) {
-                                ForEach(0..<30) { value in
-                                    Text("\(value)")
-                                }
-                            }
-                            .pickerStyle(WheelPickerStyle())
-                            .labelsHidden()
+//                            Picker("score", Binding(
+//                                get: { Int(matchPoints.points) },
+//                                set: { newValue in matchPoints.points = Int16(newValue) }
+//                            )) {
+//                                ForEach(0..<30) { value in
+//                                    Text("\(value)")
+//                                }
+//                            }
+//                            .pickerStyle(WheelPickerStyle())
+//                            .labelsHidden()
                             
                         }
                     }
@@ -58,34 +58,34 @@ struct MatchEditingView: View {
             }
           
             }
-        .navigationTitle("Edit score in match number \(match.matchNumber)")
+        .navigationTitle("Edit score in match number \(Int(match.matchNumber))")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    if score[0] == score[1] {
-                        isATie = true
-                        return
-                    }
-                    for player in players {
-                        match.points[player.name] = score[players.firstIndex(of: player)!]
-                    }
-                    if let maxIndex = score.enumerated().max(by: { $0.element < $1.element })?.offset {
-                        match.winner.removeAll()
-                        match.winner[players[maxIndex].name] = score[maxIndex]
-                        print(match.winner)
-                    }
-                    do {
-                        try modelContext.save()
-                    } catch {
-                        print("Błąd zapisu: \(error.localizedDescription)")
-                    }
-                    dismiss()
-                } label: {
-                    Text("Save")
-                }
-            }
-        }
+//        .toolbar {
+//            ToolbarItem(placement: .topBarTrailing) {
+//                Button {
+//                    if score[0] == score[1] {
+//                        isATie = true
+//                        return
+//                    }
+//                    for player in players {
+//                        match.points[player.name] = score[players.firstIndex(of: player)!]
+//                    }
+//                    if let maxIndex = score.enumerated().max(by: { $0.element < $1.element })?.offset {
+//                        match.winner.removeAll()
+//                        match.winner[players[maxIndex].name] = score[maxIndex]
+//                        print(match.winner)
+//                    }
+//                    do {
+//                        try modelContext.save()
+//                    } catch {
+//                        print("Błąd zapisu: \(error.localizedDescription)")
+//                    }
+//                    dismiss()
+//                } label: {
+//                    Text("Save")
+//                }
+//            }
+//        }
         .alert("Is's a tie", isPresented: $isATie) {
             Button("Ok") { }
         } message: {

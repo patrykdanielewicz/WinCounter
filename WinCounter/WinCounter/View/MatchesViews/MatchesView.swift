@@ -38,7 +38,7 @@ struct MatchesView: View {
                     List {
                         if sparring.isSparringEnded == false {
                             VStack {
-//                                AddingScoreToMatch(sparring: sparring, clickState: $clickState, playersPlayedScore: $playersPlayedScore, scoreMap: $scoreMap)
+                                AddingScoreToMatch(sparring: sparring, clickState: $clickState, playersPlayedScore: $playersPlayedScore, scoreMap: $scoreMap)
                                 Section {
                                     Button("Add new player or team") {
                                         addNewPlayerOrTeam.toggle()
@@ -79,7 +79,7 @@ struct MatchesView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
-                        
+                        print(scoreMap)
                                     save()
                         
                                     do {
@@ -130,10 +130,10 @@ struct MatchesView: View {
             return
         }
         
-        if tieCheck() {
-            isATie = true
-            return
-        }
+//        if tieCheck() {
+//            isATie = true
+//            return
+//        }
         
         let matches = sparring.wrappedMatches
         let match = Match(context: moc)

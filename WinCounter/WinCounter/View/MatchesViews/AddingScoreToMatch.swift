@@ -15,14 +15,13 @@ struct AddingScoreToMatch: View {
     @State var sparring: Sparring
     
     @Binding var clickState:         [String: Bool]
-    @Binding var playersPlayedScore: [String: Int] 
+    @Binding var playersPlayedScore: [Player: Int]
     @Binding var scoreMap:           [String: Int]
     
     var body: some View {
 
       VStack {
           ForEach(sparring.wrappedPlayers, id: \.self) { player in
-              let score: Int = 0
                   HStack {
                       if let dataImage = player.image {
                           if let uiImage = UIImage(data: dataImage) {
@@ -42,8 +41,8 @@ struct AddingScoreToMatch: View {
                                   Text("Score")
                                       .font(.subheadline)
                                   Picker("Score", selection: Binding(
-                                    get: { scoreMap[player.name] ?? 21 },
-                                    set: { scoreMap[player.name] = $0 }
+                                    get: { scoreMap[player.wrappedName] ?? 21 },
+                                    set: { scoreMap[player.wrappedName] = $0 }
                                   )) {
                                       ForEach(0..<31, id: \.self) { int in
                                           Text("\(int)")
@@ -56,10 +55,10 @@ struct AddingScoreToMatch: View {
                                   
                                   clickState[player.wrappedName, default: false].toggle()
                                   if clickState[player.wrappedName] == true {
-                                      playersPlayedScore[player.wrappedName] = 0
+                                      playersPlayedScore[player] = 0
                                   }
                                   else {
-                                      playersPlayedScore.removeValue(forKey: player.wrappedName)
+                                      playersPlayedScore.removeValue(forKey: player)
                                   }
                                   
                                   

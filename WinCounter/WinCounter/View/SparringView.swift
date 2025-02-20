@@ -20,7 +20,7 @@ struct SparringView: View {
             List {
                 ForEach(sparrings, id: \.self) { sparring in
                     NavigationLink {
-                        //                        MatchesView(sparring: sparring)
+                                                MatchesView(sparring: sparring)
                     } label: {
                         Text("\(sparring.wrappedDate, format: .dateTime.day().month(.wide).year())")
                         

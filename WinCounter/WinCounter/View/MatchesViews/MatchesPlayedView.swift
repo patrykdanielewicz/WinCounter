@@ -15,7 +15,7 @@ struct MatchesPlayedView: View {
     @Binding var matchNumber: Int
     
     var body: some View {
-        if let matches = sparring.wrappedMatches {
+        let matches = sparring.wrappedMatches 
                     ForEach(matches, id: \.self) { match in
                         NavigationLink {
                             MatchEditingView(match: match, sparring: sparring)
@@ -23,8 +23,8 @@ struct MatchesPlayedView: View {
                             VStack(alignment: .leading) {
                                 Text("Match nr \(Int(match.matchNumber))")
                                     .font(.headline)
-                                ForEach(match.points.sorted(by: <), id: \.key) { key, value in
-                                    Text("\(key): \(value) points")
+                                ForEach(match.wrappedPoints) { points in
+                                    Text("\(points.wrappedPlayer.wrappedName): \(Int(points.points)) points")
                                 }
                             }
                         }
@@ -41,7 +41,7 @@ struct MatchesPlayedView: View {
                             .tint(.red)
                         }
                     }
-                }
+                
             
     }
 }
