@@ -19,7 +19,7 @@ struct AddNewTeam: View {
     @State private var players2name = ""
     
     
-    @State var playersImage: UIImage = UIImage(named: "add_new_pictures_placeholder")!
+    @State var playersImage: UIImage = UIImage(named: "addPicture")!
     @State var selectedNumber: Int = 0
     @State private var showImageInsertOptions: Bool = false
     @State private var notEnoughCaractersInName: Bool = false
@@ -63,7 +63,7 @@ struct AddNewTeam: View {
                             return
                         }
                         
-                        if playersImage == UIImage(named: "add_new_pictures_placeholder") {
+                        if playersImage == UIImage(named: "addPicture") {
                             playersImage = UIImage(named: "player0")!
                         }
                         if let dataImage = playersImage.pngData() {
