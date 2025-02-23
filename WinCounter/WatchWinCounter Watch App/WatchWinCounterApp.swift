@@ -11,10 +11,10 @@ import SwiftUI
 struct WatchWinCounter_Watch_AppApp: App {
     var body: some Scene {
         WindowGroup {
-            SparringView()
-                .edgesIgnoringSafeArea(.all)
+//            SparringView()
+//                .edgesIgnoringSafeArea(.all)
         }
-        .modelContainer(for: [Players.self, Sparring.self])
+//        .modelContainer(for: [Players.self, Sparring.self])
        
                         }
 }

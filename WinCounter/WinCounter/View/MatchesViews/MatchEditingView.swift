@@ -12,8 +12,9 @@ struct MatchEditingView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss)      var dismiss
 
-    var match: Match
-    var sparring: Sparring
+    @ObservedObject var match: Match
+    
+    
     
     @State var players         = [Player]()
     @State private var score   = [Int]()
@@ -37,19 +38,31 @@ struct MatchEditingView: View {
                                 }
                                 Text(matchPoints.wrappedPlayer.wrappedName)
                                     .frame(width: 100, alignment: .leading)
+                             
 
+                                Picker("score", selection: Binding(
+                                    get: { Int(matchPoints.points) },
+                                    set: { matchPoints.points = Int16($0)
+                                        if moc.hasChanges {
+                                            do {
+                                                try moc.save()
+                                            }
+                                            catch {
+                                                print(error.localizedDescription)
+                                            }
+                                        }
+                                        
+                                    }
+                                )) {
+                                    ForEach(0..<31, id: \.self) { int in
+                                        Text("\(int)")
+                                    }
+                                }
+                                .pickerStyle(WheelPickerStyle())
+                                .labelsHidden()
+                                
                             }
-                            
-//                            Picker("score", Binding(
-//                                get: { Int(matchPoints.points) },
-//                                set: { newValue in matchPoints.points = Int16(newValue) }
-//                            )) {
-//                                ForEach(0..<30) { value in
-//                                    Text("\(value)")
-//                                }
-//                            }
-//                            .pickerStyle(WheelPickerStyle())
-//                            .labelsHidden()
+                           
                             
                         }
                     }
@@ -92,10 +105,19 @@ struct MatchEditingView: View {
             Text("In badminton, there are no ties – someone must win by a two-point advantage or be the first to score 30 points.")
         }
         .onAppear {
+//            addingScoreToPlayers()
 //            playersInMatch()
 //            scoreInMatch()
         }
     }
+    
+//    func addingScoreToPlayers() {
+//        for matchesPoints in match.wrappedPoints {
+//            playersScore[matchesPoints.wrappedPlayer] = Int(matchesPoints.points)
+//        }
+//    }
+    
+    
     
 //    func playersInMatch() {
 //        var playersNameArray = [String]()

@@ -6,11 +6,6 @@
         <relationship name="points" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="MatchPoints" inverseName="match" inverseEntity="MatchPoints"/>
         <relationship name="sparring" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Sparring" inverseName="matches" inverseEntity="Sparring"/>
         <relationship name="winner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MatchWinners" inverseName="match" inverseEntity="MatchWinners"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="matchNumber"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
     <entity name="MatchPoints" representedClassName="MatchPoints" syncable="YES">
         <attribute name="points" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -31,7 +26,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="matchWinner" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MatchWinners" inverseName="player" inverseEntity="MatchWinners"/>
         <relationship name="pointsInMatch" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MatchPoints" inverseName="player" inverseEntity="MatchPoints"/>
-        <relationship name="sparrings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Sparring" inverseName="players" inverseEntity="Sparring"/>
+        <relationship name="sparrings" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Sparring" inverseName="players" inverseEntity="Sparring"/>
     </entity>
     <entity name="Sparring" representedClassName="Sparring" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

@@ -9,23 +9,29 @@ import SwiftUI
 
 struct MatchesPlayedView: View {
     
+    let sparring: Sparring
+    
     @Environment(\.managedObjectContext) var moc
-
-    @Binding var sparring: Sparring
-    @Binding var matchNumber: Int
+    @FetchRequest private var matches: FetchedResults<Match>
+    
+    init(sparring: Sparring) {
+           self.sparring = sparring
+           self._matches = FetchRequest<Match>(
+            sortDescriptors: [NSSortDescriptor(keyPath: \Match.matchNumber, ascending: false)],
+               predicate: NSPredicate(format: "sparring == %@", argumentArray: [sparring]),
+               animation: .default
+           )
+       }
     
     var body: some View {
-        let matches = sparring.wrappedMatches 
                     ForEach(matches, id: \.self) { match in
                         NavigationLink {
-                            MatchEditingView(match: match, sparring: sparring)
+                            MatchEditingView(match: match)
                         } label: {
                             VStack(alignment: .leading) {
                                 Text("Match nr \(Int(match.matchNumber))")
                                     .font(.headline)
-                                ForEach(match.wrappedPoints) { points in
-                                    Text("\(points.wrappedPlayer.wrappedName): \(Int(points.points)) points")
-                                }
+                                PlayersInMatchesPlayedView(match: match)
                             }
                         }
                         

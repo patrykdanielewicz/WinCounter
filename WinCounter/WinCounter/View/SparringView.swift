@@ -10,7 +10,7 @@ import SwiftUI
 struct SparringView: View {
     
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var sparrings: FetchedResults<Sparring>
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Sparring.date, ascending: false)]) var sparrings: FetchedResults<Sparring>
     
     @State private var isAddNewSparringPresented: Bool = false
     @State private var isNewSparringAdded:        Bool = false
@@ -20,7 +20,7 @@ struct SparringView: View {
             List {
                 ForEach(sparrings, id: \.self) { sparring in
                     NavigationLink {
-                                                MatchesView(sparring: sparring)
+                        MatchesView(sparring: sparring)
                     } label: {
                         Text("\(sparring.wrappedDate, format: .dateTime.day().month(.wide).year())")
                         
@@ -53,7 +53,7 @@ struct SparringView: View {
                        
                 .navigationDestination(isPresented: $isNewSparringAdded) {
                     if let sparring = sparrings.first {
-                        //                    MatchesView(sparring: sparring)
+                        MatchesView(sparring: sparring)
                     }
                 }
                 .navigationTitle("Sparrings")

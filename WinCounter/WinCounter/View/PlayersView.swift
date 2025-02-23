@@ -37,19 +37,28 @@ struct PlayersView: View {
                             } }
                         
                     }
-//                    .swipeActions {
-//                        Button("Delete", role: .destructive) {
-//                            modelContext.delete(player)
-//                            do {
-//                                 try modelContext.save()
-//                            }
-//                            catch {
-//                                print(error.localizedDescription)
-//                            }
-//
-//                        }
-//                        .tint(.red)
-//                    }
+                    .swipeActions {
+                        Button(role: .destructive) {
+                            moc.delete(player)
+                            do {
+                                try moc.save()
+                            }
+                            catch {
+                                print(error.localizedDescription)
+                            }
+                        }
+                            label: {
+                                if player.sparringsArray.isEmpty {
+                                    Text("Delete")
+                                }
+                                else {
+                                    Text("Archivize")
+                                }
+                            }
+
+                        
+                        .tint(.red)
+                    }
                 }
             }
             .listStyle(PlainListStyle())

@@ -13,7 +13,7 @@ struct MatchesView: View {
     @Environment(\.managedObjectContext) var moc
     
     // CoreData
-    @State private var sparring: Sparring
+    @ObservedObject private var sparring: Sparring
     
     // ScoreTracking
     @State private var scoreMap: [String: Int]           = [:]
@@ -48,21 +48,23 @@ struct MatchesView: View {
                             }
                         }
                         Section("Matches played") {
-                            MatchesPlayedView(sparring: $sparring, matchNumber: $matchNumber)
+                            MatchesPlayedView(sparring: sparring)
                         }
-                        //                        Button() {
-                        //                            sparring.isSparringEnded.toggle()
-                        //                            do {
-                        //                                try modelContext.save()
-                        //                            } catch {
-                        //                                print("Błąd zapisu: \(error.localizedDescription)")
-                        //                            }
-                        //                        } label: {
-                        //                            Text(sparring.isSparringEnded ? "Edit sparring" : "End sparring")
-                        //                                    .frame(maxWidth: .infinity)
-                        //                                    .multilineTextAlignment(.center)
-                        //                        }
-                        //                        .buttonStyle(.borderless)
+                        Button() {
+                            sparring.isSparringEnded.toggle()
+                            if moc.hasChanges {
+                                do {
+                                    try moc.save()
+                                } catch {
+                                    print("Błąd zapisu: \(error.localizedDescription)")
+                                }
+                            }
+                        } label: {
+                            Text(sparring.isSparringEnded ? "Edit sparring" : "End sparring")
+                                .frame(maxWidth: .infinity)
+                                .multilineTextAlignment(.center)
+                                                }
+                            .buttonStyle(.borderless)
                         
                         
                     }
@@ -79,16 +81,12 @@ struct MatchesView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
-                        print(scoreMap)
+                        
                                     save()
                         
-                                    do {
-                                        try moc.save()
-                                    } catch {
-                                        print("Błąd zapisu: \(error.localizedDescription)")
-                                    }
+                                   
                                     
-                                    showCheckmark = true
+        
                                     
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                         showCheckmark = false
@@ -130,31 +128,46 @@ struct MatchesView: View {
             return
         }
         
-//        if tieCheck() {
-//            isATie = true
-//            return
-//        }
+        if tieCheck() {
+            isATie = true
+            return
+        }
+        
+        
         
         let matches = sparring.wrappedMatches
+   
         let match = Match(context: moc)
             match.sparring = sparring
             match.matchNumber = Int16(matches.count + 1)
-        
+    
         for player in playersPlayedScore {
-            let newMatchPoint = MatchPoints(context: moc)
-                newMatchPoint.player = player.key
-                newMatchPoint.points = Int16(player.value)
-//                                newMatchPoint.match  = match
-                match.addToPoints(newMatchPoint)
+       
+            if let score = scoreMap[player.key.wrappedName] {
+                let newMatchPoint = MatchPoints(context: moc)
+                    newMatchPoint.player = player.key
+                    newMatchPoint.points = Int16(score)
+                    newMatchPoint.match  = match
+                    match.addToPoints(newMatchPoint)
+                    playersPlayedScore[player.key] = score
             }
+        }
             
         if let winner = playersPlayedScore.max(by: {$0.value < $1.value}) {
             let newMatchWinner = MatchWinners(context: moc)
             newMatchWinner.player = winner.key
             newMatchWinner.points = Int16(winner.value)
             newMatchWinner.match = match
-            
+            print(newMatchWinner.player?.wrappedName ?? "c")
         }
+        showCheckmark = true
+        
+        do {
+            try moc.save()
+        } catch {
+            print("Błąd zapisu: \(error.localizedDescription)")
+        }
+
     }
     
         func addingPlayersToScoreMap() {
@@ -182,7 +195,7 @@ struct MatchesView: View {
         
         func tieCheck() -> Bool {
             var scoreArray = [Int]()
-            for player in playersPlayedScore {
+            for player in scoreMap {
                 scoreArray.append(player.value)
             }
             if scoreArray[0] == scoreArray[1] {

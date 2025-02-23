@@ -21,6 +21,13 @@
 			remoteGlobalIDString = 60A514722D43DF06000B5F63;
 			remoteInfo = WinCounterComplicationExtension;
 		};
+		60AFA7002D3FADE00065A4AC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60152CCC2D37D32A003FA341 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 60AFA6F42D3FADDF0065A4AC;
+			remoteInfo = "WatchWinCounter Watch App";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -71,24 +78,6 @@
 			);
 			target = 60A514722D43DF06000B5F63 /* WinCounterComplicationExtension */;
 		};
-		60AFA7732D41487F0065A4AC /* Exceptions for "Model" folder in "WatchWinCounter Watch App" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"CoreDataClasses/Match+CoreDataClass.swift",
-				"CoreDataClasses/Match+CoreDataProperties.swift",
-				"CoreDataClasses/MatchPoints+CoreDataClass.swift",
-				"CoreDataClasses/MatchPoints+CoreDataProperties.swift",
-				"CoreDataClasses/MatchWinners+CoreDataClass.swift",
-				"CoreDataClasses/MatchWinners+CoreDataProperties.swift",
-				"CoreDataClasses/Player+CoreDataClass.swift",
-				"CoreDataClasses/Player+CoreDataProperties.swift",
-				"CoreDataClasses/Sparring+CoreDataClass.swift",
-				"CoreDataClasses/Sparring+CoreDataProperties.swift",
-				DataController.swift,
-				WinCounterModel.xcdatamodeld,
-			);
-			target = 60AFA6F42D3FADDF0065A4AC /* WatchWinCounter Watch App */;
-		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -115,9 +104,6 @@
 		};
 		60AFA71A2D3FE4290065A4AC /* Model */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				60AFA7732D41487F0065A4AC /* Exceptions for "Model" folder in "WatchWinCounter Watch App" target */,
-			);
 			path = Model;
 			sourceTree = "<group>";
 		};
@@ -196,6 +182,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				60AFA7012D3FADE00065A4AC /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				6036BF032D4D014F00254A66 /* WinCounter */,
@@ -352,6 +339,11 @@
 			target = 60A514722D43DF06000B5F63 /* WinCounterComplicationExtension */;
 			targetProxy = 60A5147D2D43DF07000B5F63 /* PBXContainerItemProxy */;
 		};
+		60AFA7012D3FADE00065A4AC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 60AFA6F42D3FADDF0065A4AC /* WatchWinCounter Watch App */;
+			targetProxy = 60AFA7002D3FADE00065A4AC /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -482,7 +474,7 @@
 				CODE_SIGN_ENTITLEMENTS = WinCounter/WinCounter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3.1;
 				DEVELOPMENT_ASSET_PATHS = "\"WinCounter/Preview Content\"";
 				DEVELOPMENT_TEAM = 24YMS45SS2;
 				ENABLE_PREVIEWS = YES;
@@ -516,7 +508,7 @@
 				CODE_SIGN_ENTITLEMENTS = WinCounter/WinCounter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3.1;
 				DEVELOPMENT_ASSET_PATHS = "\"WinCounter/Preview Content\"";
 				DEVELOPMENT_TEAM = 24YMS45SS2;
 				ENABLE_PREVIEWS = YES;
