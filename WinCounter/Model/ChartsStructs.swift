@@ -17,7 +17,7 @@ struct DataForEachPlayer: Identifiable {
     
     let id = UUID()
     
-    let name: String
+    let name: Player
     let stats: [DataStructuresForChart]
 
 }

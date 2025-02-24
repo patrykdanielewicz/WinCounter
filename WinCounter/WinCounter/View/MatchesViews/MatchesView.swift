@@ -98,7 +98,7 @@ struct MatchesView: View {
                 }
             }
                 .sheet(isPresented: $addNewPlayerOrTeam, content: {
-                    //            AddNewPlayerOrTeamToSparring(sparring: sparring)
+                    AddNewPlayerOrTeamToSparring(sparring: sparring)
                 })
                 .alert("Not enought players", isPresented: $notEnoughtPlayersAllert) {
                     Button("Ok") { }

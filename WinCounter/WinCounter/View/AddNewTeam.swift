@@ -72,6 +72,7 @@ struct AddNewTeam: View {
                             if let dataImage = teamImage.jpegData(compressionQuality: 0.6) {
                                 let team = Player(context: moc)
                                 team.doubels = true
+                                team.name = name
                                 team.doublesPlayerNr1 = players1name
                                 team.doublesPlayerNr2 = players2name
                                 team.image = dataImage

@@ -10,7 +10,7 @@ import SwiftUI
 struct PlayersView: View {
     
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var players: FetchedResults<Player>
+    @FetchRequest(sortDescriptors: [], predicate: NSPredicate(format: "doubels == %@", NSNumber(value: false))) var players: FetchedResults<Player>
   
     
     @State private var isAddNewPlayerPresented = false
@@ -20,7 +20,7 @@ struct PlayersView: View {
             List {
                 ForEach(players, id: \.self) { player in
                     NavigationLink {
-//                        PlayersDetail(player: player)
+                        PlayersDetail(player: player)
                     } label: {
                         HStack {
                             if let image = player.image {

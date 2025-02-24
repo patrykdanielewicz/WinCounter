@@ -14,8 +14,7 @@ struct WinCounterTabView: View {
     var body: some View {
         TabView {
                 Tab("Players", systemImage: "person.3") {
-                    PlayersView()
-//                    PlayersGrupsSegmentetPickerView()
+                    PlayersGrupsSegmentetPickerView()
                 }
                 Tab("Sparring", systemImage: "sportscourt.fill") {
                     SparringView()

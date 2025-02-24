@@ -20,6 +20,10 @@ extension MatchWinners {
     @NSManaged public var match: Match?
     @NSManaged public var player: Player?
 
+    public var wrappedPlayer: Player {
+        return player ?? Player()
+    }
+    
 }
 
 extension MatchWinners : Identifiable {
