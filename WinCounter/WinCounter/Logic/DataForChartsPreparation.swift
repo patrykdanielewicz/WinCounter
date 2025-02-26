@@ -43,44 +43,40 @@ class DataForChartsPreparation {
             for sparring in sparrings {
             let matches = sparring.wrappedMatches
             let matchesCount: Int = matches.count
-                    
-                    var matchWins: Int = 0
+                var matchWins: Int = 0
                 for match in matches {
                     if let winner = match.winner {
                         if  winner.player == player {
-                            matchWins += 1
+                        matchWins += 1
                         }
                     }
                 }
-                    if matchesCount != 0 {
-                        let totalLosses = DataStructuresForChart(label: "Total Losses", value: (matchesCount - matchWins))
-                        let totalMachesWin = DataStructuresForChart(label: "Total Wins", value: matchWins)
-                        let machesDataStructuresForChart = [totalLosses,totalMachesWin]
-                        let date = sparring.date
-                        let sparringData = DataForEachSparring(sparring: date, stats: machesDataStructuresForChart)
+                if matchesCount != 0 {
+                    let totalLosses = DataStructuresForChart(label: "Total Losses", value: (matchesCount - matchWins))
+                    let totalMachesWin = DataStructuresForChart(label: "Total Wins", value: matchWins)
+                    let machesDataStructuresForChart = [totalLosses,totalMachesWin]
+                    let date = sparring.wrappedDate
+                    let sparringData = DataForEachSparring(sparring: date, stats: machesDataStructuresForChart)
                         data.append(sparringData)
                         
-                    }
-                 }
-            
-            
-        
+                }
+            }
         return data
     }
-//    
-//    static func dataForEachOpponentsPerSparring(opponentsWinLossesDictionary: [String: [Int]]) -> [DataForEachPlayer] {
-//        var data = [DataForEachPlayer]()
-//        for opponent in opponentsWinLossesDictionary {
-//            let wins = opponent.value[0]
-//            let losses = opponent.value[1]
-//            let winsDataStructures = DataStructuresForChart(label: "wins", value: wins)
-//            let lossesDataStructures = DataStructuresForChart(label: "losses", value: losses)
-//            let dataStructuresArray = [winsDataStructures, lossesDataStructures]
-//            let opponentDataStructures = DataForEachPlayer(name: opponent.key, stats: dataStructuresArray)
-//            data.append(opponentDataStructures)
-//        }
-//        return data
-//    }
+    
+    static func dataForEachOpponentsPerSparring(opponentsWinLossesDictionary: [Player: [Int]]) -> [DataForEachPlayer] {
+        var data = [DataForEachPlayer]()
+        for opponent in opponentsWinLossesDictionary {
+            let wins = opponent.value[0]
+            let losses = opponent.value[1]
+            let winsDataStructures = DataStructuresForChart(label: "wins", value: wins)
+            let lossesDataStructures = DataStructuresForChart(label: "losses", value: losses)
+            let dataStructuresArray = [winsDataStructures, lossesDataStructures]
+            let opponentDataStructures = DataForEachPlayer(name: opponent.key, stats: dataStructuresArray)
+            data.append(opponentDataStructures)
+        }
+        return data
+    }
     
     
     

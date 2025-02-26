@@ -24,6 +24,9 @@ extension MatchPoints {
         return player ?? Player()
     }
     
+    public var wrappedMatch: Match {
+        return match ?? Match()
+    }
 }
 
 extension MatchPoints : Identifiable {

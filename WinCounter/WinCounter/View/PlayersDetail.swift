@@ -41,7 +41,7 @@ struct PlayersDetail: View {
                             GeneralStatisticView(player: player)
                         }
                         Section("Sparring stats") {
-                            //                            SparringStatisticView(player: player)
+                            SparringStatisticView(player: player)
                             
                         }
                         
