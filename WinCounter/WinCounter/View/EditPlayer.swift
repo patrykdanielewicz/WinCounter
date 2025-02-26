@@ -64,15 +64,13 @@ struct EditPlayer: View {
                             notEnoughCaractersInName = true
                             return
                         }
-                   
-                        if let dataImage = unwrappingOptionalDataImage(image: player.image).jpegData(compressionQuality: 0.6) {
                                 do {
                                     try moc.save()
                                 }
                                 catch {
                                     print(error.localizedDescription)
                                 }
-                            }
+                            
                         
                         dismiss()
                     }
@@ -87,7 +85,7 @@ struct EditPlayer: View {
     func changeProfilePictures() {
         if let selectedImage = selectedImage {
             if selectedImage != UIImage(named: "player0") {
-                if let data = selectedImage.pngData() {
+                if let data = selectedImage.jpegData(compressionQuality: 0.6) {
                     player.image = data
                 }
             }

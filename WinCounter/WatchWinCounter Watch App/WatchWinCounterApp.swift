@@ -4,17 +4,20 @@
 //
 //  Created by Patryk Danielewicz on 21/01/2025.
 //
-import SwiftData
+import CoreData
 import SwiftUI
 
 @main
 struct WatchWinCounter_Watch_AppApp: App {
+    
+    @StateObject private var dataController = DataController()
+    
     var body: some Scene {
         WindowGroup {
-//            SparringView()
-//                .edgesIgnoringSafeArea(.all)
+            SparringView()
+                .ignoresSafeArea()
         }
-//        .modelContainer(for: [Players.self, Sparring.self])
+        .environment(\.managedObjectContext, dataController.container.viewContext)
        
                         }
 }

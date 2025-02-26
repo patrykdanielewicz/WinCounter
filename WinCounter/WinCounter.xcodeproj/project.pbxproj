@@ -233,6 +233,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				60AFA6F62D3FADDF0065A4AC /* WatchWinCounter Watch App */,
+				60AFA71A2D3FE4290065A4AC /* Model */,
 			);
 			name = "WatchWinCounter Watch App";
 			packageProductDependencies = (

@@ -19,7 +19,7 @@ struct DoubleView: View {
             List {
                 ForEach(teams) { team in
                     NavigationLink {
-//                        PlayersDetail(player: team)
+                        PlayersDetail(player: team)
                     } label: {
                             HStack {
                                 if let image = team.image {

@@ -17,7 +17,6 @@ struct WinCounterApp: App {
     var body: some Scene {
         WindowGroup {
             WinCounterTabView()
-//                .modelContainer(for: [Players.self, Sparring.self])
                 .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
