@@ -111,7 +111,6 @@ struct DataForSparringsDetailView {
             for uniqueOpponent in uniqueOpponents {
                 var matchesWinByOpponents = 0
                 var matchesWithOpponent = 0
-                let matches = sparing.wrappedMatches
                 for match in playerMatches {
                     if let winner = match.winner?.player {
                         if winner == uniqueOpponent {

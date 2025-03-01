@@ -160,12 +160,10 @@ struct MatchView: View {
         
         }
     func savingData() {
-        var matchNumber = sparring.wrappedMatches.count + 1
+        let matchNumber = sparring.wrappedMatches.count + 1
         let matchWinner = MatchWinners(context: moc)
         let matchPoints1 = MatchPoints(context: moc)
         let matchPoints2 = MatchPoints(context: moc)
-        var points = [String:Int]()
-        var winner = [String: Int]()
     
         if selectedPlayers.count == 2 {
             matchPoints1.player = selectedPlayers[0]

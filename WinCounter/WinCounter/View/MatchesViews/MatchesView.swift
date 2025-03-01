@@ -83,11 +83,7 @@ struct MatchesView: View {
                     Button("Save") {
                         
                                     save()
-                        
-                                   
-                                    
-        
-                                    
+          
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                         showCheckmark = false
                                     }
@@ -121,6 +117,7 @@ struct MatchesView: View {
         }
     }
         
+    
     func save() {
 
         if playersPlayedScore.keys.count != 2 {

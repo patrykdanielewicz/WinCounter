@@ -24,7 +24,7 @@ struct AddNewMatchView: View {
                 
                 Section("Chose players for match") {
                     let players = sparring.wrappedPlayers
-                        ForEach(players) { player in
+                    ForEach(players, id: \.self) { player in
                             Button {
                                 addingPlayersforMatch(for: player)
                             } label: {

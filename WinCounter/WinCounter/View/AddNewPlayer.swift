@@ -11,13 +11,9 @@ import PhotosUI
 struct AddNewPlayer: View {
     
     @Environment(\.dismiss) var dismiss
-    @Environment(\.managedObjectContext) var moc
 
-    @State private var name: String = ""
-    @State var playersImage: UIImage? = UIImage(named: "addPicture")
-    @State var selectedNumber: Int = 0
-    @State private var showImageInsertOptions: Bool = false
-    @State private var notEnoughCaractersInName: Bool = false
+    @StateObject private var viewModel = AddNewPlayerViewModel()
+
     
     var body: some View {
         NavigationStack {
@@ -121,8 +117,4 @@ struct AddNewPlayer: View {
         }
     }
 
-}
-
-#Preview {
-    AddNewPlayer()
 }

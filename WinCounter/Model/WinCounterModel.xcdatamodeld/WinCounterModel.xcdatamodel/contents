@@ -3,7 +3,7 @@
     <entity name="Match" representedClassName="Match" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="matchNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="points" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="MatchPoints" inverseName="match" inverseEntity="MatchPoints"/>
+        <relationship name="points" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MatchPoints" inverseName="match" inverseEntity="MatchPoints"/>
         <relationship name="sparring" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Sparring" inverseName="matches" inverseEntity="Sparring"/>
         <relationship name="winner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MatchWinners" inverseName="match" inverseEntity="MatchWinners"/>
     </entity>
@@ -34,10 +34,5 @@
         <attribute name="isSparringEnded" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="matches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Match" inverseName="sparring" inverseEntity="Match"/>
         <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player" inverseName="sparrings" inverseEntity="Player"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="date"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
 </model>

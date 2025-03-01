@@ -23,8 +23,18 @@ extension Match {
     @NSManaged public var sparring: Sparring?
 
     public var wrappedPoints: [MatchPoints] {
-        let array = points?.array as? [MatchPoints] ?? []
-        return array
+        guard let set = points else {
+            print("❌ Nie można przekonwertować points na NSOrderedSet")
+            return []
+        }
+        
+        let matchesArray = set.compactMap { $0 as? MatchPoints }
+        
+        if matchesArray.isEmpty {
+            print("❌ `wrappedPoints` zwróciło pustą tablicę, sprawdź dane w Core Data!")
+        }
+        
+        return matchesArray
     }
     
 }
