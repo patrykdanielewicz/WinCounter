@@ -18,7 +18,7 @@ struct PlayersView: View {
                         PlayersDetail(player: player)
                     } label: {
                         HStack {
-                            let image = modelView.dc.creatingUIImage(for: player)
+                            let image = modelView.dc.decodeImage(for: player)
                             Image(uiImage: image)
                                 .resizable()
                                 .scaledToFill()

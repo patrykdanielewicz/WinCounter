@@ -8,43 +8,22 @@
 import PhotosUI
 import SwiftUI
 
-
-struct LazyView<Content: View>: View {
-    private let build: () -> Content
-
-    init(_ build: @escaping () -> Content) {
-        self.build = build
-    }
-
-    var body: Content {
-        build()
-    }
-}
-
 struct PlayersImageInsertOptions: View {
     
     @Environment(\.dismiss) var dismiss
-
-    @State private var selectedItem: PhotosPickerItem?
-    @State private var selectedCameraImage: UIImage?
-    @Binding  var selectedImage: UIImage?
-    @Binding var showInsertImageOptions: Bool
-    @State var showCamera = false
-    @State var showCircleCropper = false
-   
-    
+    @StateObject var viewModel = PlayersImageInsertOptionsViewModel()
     
     var body: some View {
         NavigationStack {
             List {
-                PhotosPicker(selection: $selectedItem, matching: .images) {
+                PhotosPicker(selection: $viewModel.selectedItem, matching: .images) {
                     HStack {
                         Image(systemName: "photo")
                         Text("Choose from library")
                     }
                 }
                 Button {
-                    showCamera.toggle()
+                    viewModel.showingCammera()
                 } label: {
                     HStack {
                         Image(systemName: "camera")
@@ -52,52 +31,28 @@ struct PlayersImageInsertOptions: View {
                     }
                 }
             }
-
-            
-         
             .presentationDetents([.fraction(0.2)])
-            .onChange(of: selectedImage) {
-                showCircleCropper = true
+            .onChange(of: viewModel.selectedImage) {
+                viewModel.showingCircelCropper()
             }
-            .onChange(of: selectedItem) {
-                if let selectedItemToData = selectedItem {
-                    converToUIIImage(selectetItem: selectedItemToData)
-                }
-            }
-            .onChange(of: selectedCameraImage) {
-                if let selectedCameraImage = selectedCameraImage {
-                    selectedImage = selectedCameraImage
+         
+            .onChange(of: viewModel.selectedCameraImage) {
+                if let selectedCameraImage = viewModel.selectedCameraImage {
+                    viewModel.selectedImage = selectedCameraImage
         
                 }
             }
-            .fullScreenCover(isPresented: $showCamera) {
-                ImagePickerView(selectedImage: $selectedCameraImage)
+            .fullScreenCover(isPresented: $viewModel.showCamera) {
+                ImagePickerView(selectedImage: $viewModel.selectedCameraImage)
             }
-            .fullScreenCover(isPresented: $showCircleCropper) {
-                CircleCropperView(image: $selectedImage, showInsertImageOptions: $showInsertImageOptions)
-            }
+//            .fullScreenCover(isPresented: $viewModel.showCircleCropper) {
+//                CircleCropperView(image: $viewModel.selectedImage, showInsertImageOptions: $viewModel.showInsertImageOptions)
+//            }
         }
         
         .tint(.brandPrimary)
     }
-    func converToUIIImage(selectetItem: PhotosPickerItem) {
-        
-        Task {
-            do {
-                if let data = try await selectetItem.loadTransferable(type: Data.self) {
-                    if let  uiImage = UIImage(data: data) {
-                        await MainActor.run {
-                            selectedImage = uiImage
-                            
-                        }
-                    }
-                }
-            }
-            catch {
-                print(error.localizedDescription)
-            }
-        }
-    }
+ 
 }
 
 //#Preview {

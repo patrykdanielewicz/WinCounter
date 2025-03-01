@@ -51,9 +51,9 @@ struct AddNewTeam: View {
             } message: {
                 Text("The name must have at least two characters.")
             }
-            .sheet(isPresented: $showImageInsertOptions) {
-                PlayersImageInsertOptions(selectedImage: $teamImage, showInsertImageOptions: $showImageInsertOptions)
-            }
+//            .sheet(isPresented: $showImageInsertOptions) {
+//                PlayersImageInsertOptions(selectedImage: $teamImage, showInsertImageOptions: $showImageInsertOptions)
+//            }
             .navigationTitle("Add new Team")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

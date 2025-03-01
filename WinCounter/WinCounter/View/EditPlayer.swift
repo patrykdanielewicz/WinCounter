@@ -45,7 +45,7 @@ struct EditPlayer: View {
             
             
             .sheet(isPresented: $showImageInsertOptions) {
-                PlayersImageInsertOptions(selectedImage: $selectedImage, showInsertImageOptions: $showImageInsertOptions)
+                PlayersImageInsertOptions()
             }
             .alert("Name is too short", isPresented: $notEnoughCaractersInName) {
                 Button("OK") { }

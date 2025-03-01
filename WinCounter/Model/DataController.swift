@@ -58,13 +58,22 @@ class DataController: ObservableObject {
         saveData()
     }
     
-    func creatingUIImage(for player: Player) -> UIImage {
+    func decodeImage(for player: Player) -> UIImage {
         if let image = player.image {
             if let uiImage = UIImage(data: image) {
                 return uiImage
             }
         }
         return UIImage(systemName: "person.crop.rectangle.fill") ?? UIImage()
+    }
+    
+    func addingPlayer(name: String, image: Data? ) {
+        let player = Player(context: container.viewContext)
+        player.doubels = false
+        player.id = UUID()
+        player.name = name
+        player.image = image
+        
     }
     
 }
