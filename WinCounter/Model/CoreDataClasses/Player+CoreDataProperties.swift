@@ -2,7 +2,7 @@
 //  Player+CoreDataProperties.swift
 //  WinCounter
 //
-//  Created by Patryk Danielewicz on 20/02/2025.
+//  Created by Patryk Danielewicz on 12/03/2025.
 //
 //
 
@@ -16,16 +16,16 @@ extension Player {
         return NSFetchRequest<Player>(entityName: "Player")
     }
 
-    @NSManaged public var doubels: Bool
+    @NSManaged public var doubles: Bool
     @NSManaged public var doublesPlayerNr1: String?
     @NSManaged public var doublesPlayerNr2: String?
-    @NSManaged public var name: String?
-    @NSManaged public var image: Data?
     @NSManaged public var id: UUID?
-    @NSManaged public var sparrings: NSSet?
-    @NSManaged public var pointsInMatch: NSSet?
+    @NSManaged public var image: Data?
+    @NSManaged public var name: String?
     @NSManaged public var matchWinner: NSSet?
-    
+    @NSManaged public var pointsInMatch: NSSet?
+    @NSManaged public var sparrings: NSSet?
+
     public var wrappedName: String {
         name ?? "Unknown Name"
     }
@@ -61,24 +61,22 @@ extension Player {
             $0.match?.sparring?.wrappedDate ?? Date.now > $1.match?.sparring?.wrappedDate ?? Date.now
         }
     }
-    
-
 }
 
-// MARK: Generated accessors for sparrings
+// MARK: Generated accessors for matchWinner
 extension Player {
 
-    @objc(addSparringsObject:)
-    @NSManaged public func addToSparrings(_ value: Sparring)
+    @objc(addMatchWinnerObject:)
+    @NSManaged public func addToMatchWinner(_ value: MatchWinners)
 
-    @objc(removeSparringsObject:)
-    @NSManaged public func removeFromSparrings(_ value: Sparring)
+    @objc(removeMatchWinnerObject:)
+    @NSManaged public func removeFromMatchWinner(_ value: MatchWinners)
 
-    @objc(addSparrings:)
-    @NSManaged public func addToSparrings(_ values: NSSet)
+    @objc(addMatchWinner:)
+    @NSManaged public func addToMatchWinner(_ values: NSSet)
 
-    @objc(removeSparrings:)
-    @NSManaged public func removeFromSparrings(_ values: NSSet)
+    @objc(removeMatchWinner:)
+    @NSManaged public func removeFromMatchWinner(_ values: NSSet)
 
 }
 
@@ -99,20 +97,20 @@ extension Player {
 
 }
 
-// MARK: Generated accessors for matchWinner
+// MARK: Generated accessors for sparrings
 extension Player {
 
-    @objc(addMatchWinnerObject:)
-    @NSManaged public func addToMatchWinner(_ value: MatchWinners)
+    @objc(addSparringsObject:)
+    @NSManaged public func addToSparrings(_ value: Sparring)
 
-    @objc(removeMatchWinnerObject:)
-    @NSManaged public func removeFromMatchWinner(_ value: MatchWinners)
+    @objc(removeSparringsObject:)
+    @NSManaged public func removeFromSparrings(_ value: Sparring)
 
-    @objc(addMatchWinner:)
-    @NSManaged public func addToMatchWinner(_ values: NSSet)
+    @objc(addSparrings:)
+    @NSManaged public func addToSparrings(_ values: NSSet)
 
-    @objc(removeMatchWinner:)
-    @NSManaged public func removeFromMatchWinner(_ values: NSSet)
+    @objc(removeSparrings:)
+    @NSManaged public func removeFromSparrings(_ values: NSSet)
 
 }
 

@@ -8,31 +8,53 @@ import SwiftUI
 
 struct PlayersView: View {
     
-    @StateObject private var modelView = PlayersViewModel()
+    @StateObject private var viewModel: PlayersViewModel
+    
+    init(dataController: DataControllerProtocol, doubles: Bool) {
+        _viewModel = StateObject(wrappedValue: PlayersViewModel(dataController: dataController, doubles: doubles))
+    }
     
     var body: some View {
         NavigationStack {
             List {
-                ForEach(modelView.players, id: \.self) { player in
+                ForEach(viewModel.players.filter { $0.doubles == viewModel.doubles }, id: \.id) { player in
                     NavigationLink {
-                        PlayersDetail(player: player)
+                        PlayersDetail(dataController: viewModel.dc, player: player, double: viewModel.doubles)
                     } label: {
                         HStack {
-                            let image = modelView.dc.decodeImage(for: player)
+                            let image = viewModel.dc.decodeImage(for: player)
                             Image(uiImage: image)
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: 50, height: 50)
                                 .clipShape(.circle)
-                            Text(player.wrappedName)
+                            VStack(alignment: .leading) {
+                                Text(player.wrappedName)
+                                if viewModel.doubles == true {
+                                    HStack {
+                                        Image(systemName: "1.square")
+                                        Text(player.wrappedDoublesPlayerNr1)
+                                            .font(.footnote)
+                                            .opacity(0.5)
+                                        
+                                    }
+                                    HStack {
+                                        Image(systemName: "2.square")
+                                        Text(player.wrappedDoublesPlayerNr2)
+                                            .font(.footnote)
+                                            .opacity(0.5)
+                                    }
+                                }
+                            }
+                            
                         }
                     }
                     .swipeActions {
                         Button(role: .destructive) {
-                            modelView.dc.deleteData(player)
+                            viewModel.dc.deleteData(player)
                         }
                         label: {
-                            Text(modelView.archiveOrDeleteChecker(player: player))
+                            Text(viewModel.archiveOrDeleteChecker(player: player))
                         }
                         .tint(.red)
                     }
@@ -42,7 +64,7 @@ struct PlayersView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink {
-                        AddNewPlayer()
+                        AddNewPlayer(dataController: viewModel.dc, doubles: viewModel.doubles )
                     } label: {
                         Image(systemName: "plus")
                     }
@@ -51,4 +73,3 @@ struct PlayersView: View {
         }
     }
 }
-

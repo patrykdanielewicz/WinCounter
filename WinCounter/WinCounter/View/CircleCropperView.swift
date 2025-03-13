@@ -10,58 +10,51 @@ import SwiftUI
 struct CircleCropperView: View {
     
     @Environment(\.dismiss) var dismiss
+    @StateObject private var viewModel: CircleCropperViewModel
     
-    @Binding var image: UIImage?
-    
-    @State private var offset: CGSize = .zero
-    @State private var scale: CGFloat = 1.0
-    @State private var lastOffset: CGSize = .zero
-    @State private var lastScale: CGFloat = 1.0
-    @Binding var showInsertImageOptions: Bool
-    
-    
-    
+    init(addNewPlayerViewModel: AddNewPlayerViewModel?, image: UIImage?) {
+        _viewModel = StateObject(wrappedValue: CircleCropperViewModel(addNewPlayerViewModel: addNewPlayerViewModel, image: image))
+    }
     var body: some View {
         ZStack {
-            if let image = image {
+            if let image = viewModel.image {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFill()
-                    .offset(offset)
-                    .scaleEffect(scale)
+                    .offset(viewModel.offset)
+                    .scaleEffect(viewModel.scale)
                     .gesture(
                         DragGesture()
                             .onChanged { value in
-                                offset = CGSize (
-                                    width: lastOffset.width + value.translation.width,
-                                    height: lastOffset.height + value.translation.height
+                                viewModel.offset = CGSize (
+                                    width: viewModel.lastOffset.width + value.translation.width,
+                                    height: viewModel.lastOffset.height + value.translation.height
                                 )
                             }
                             .onEnded { _ in
-                                lastOffset = offset
+                                viewModel.lastOffset = viewModel.offset
                             }
                     )
                     .gesture(
                         MagnificationGesture()
                             .onChanged { value in
-                                scale = lastScale * value
+                                viewModel.scale = viewModel.lastScale * value
                             }
                             .onEnded { _ in
-                                lastScale = scale
+                                viewModel.lastScale = viewModel.scale
                             }
                     )
                     .clipShape(Circle())
                     .frame(width: 300, height: 300)
                     .clipped()
-                
                 Circle()
                     .stroke(Color.white, lineWidth: 2)
                     .frame(width: 300, height: 300)
                 VStack {
                     Spacer()
                     Button("Done") {
-                        saveCroppedImage()
-                        
+                        viewModel.saveCroppedImage()
+                        dismiss()
                     }
                     .padding()
                     .background(Color.blue)
@@ -71,44 +64,6 @@ struct CircleCropperView: View {
             }
         }
     }
-    
-    func saveCroppedImage() {
-        if let wrappedimage = image {
-            let originalImage = wrappedimage
-            let cropSize = CGSize(width: 300, height: 300)
-            if let croppedImage = createCircularCroppedImage(from: originalImage, offset: offset, scale: scale, cropSize: cropSize) {
-                image = croppedImage
-            }
-            showInsertImageOptions = false
-            dismiss()
-        }
-    }
-    
-    func createCircularCroppedImage(from originalImage: UIImage, offset: CGSize, scale: CGFloat, cropSize: CGSize) -> UIImage? {
-        let renderer = UIGraphicsImageRenderer(size: cropSize)
-        return renderer.image { context in
-            let rect = CGRect(origin: .zero, size: cropSize)
-            UIBezierPath(ovalIn: rect).addClip()
-            let initialScale = max(cropSize.width / originalImage.size.width,
-                                   cropSize.height / originalImage.size.height)
-            let effectiveWidth = originalImage.size.width * initialScale
-            let effectiveHeight = originalImage.size.height * initialScale
-            let center = CGPoint(x: cropSize.width / 2, y: cropSize.height / 2)
-            let centeredOrigin = CGPoint(x: (cropSize.width - effectiveWidth) / 2,
-                                         y: (cropSize.height - effectiveHeight) / 2)
-            let offsetOrigin = CGPoint(x: centeredOrigin.x + offset.width,
-                                       y: centeredOrigin.y + offset.height)
-            let finalOriginX = center.x + (offsetOrigin.x - center.x) * scale
-            let finalOriginY = center.y + (offsetOrigin.y - center.y) * scale
-            let finalWidth = effectiveWidth * scale
-            let finalHeight = effectiveHeight * scale
-            
-            let drawRect = CGRect(x: finalOriginX, y: finalOriginY, width: finalWidth, height: finalHeight)
-            originalImage.draw(in: drawRect)
-        }
-    }
-    
-    
 }
 
 //#Preview {

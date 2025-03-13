@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  ImagePickerView.swift
 //  WinCounter
 //
 //  Created by Patryk Danielewicz on 21/01/2025.
@@ -10,11 +10,14 @@ import UIKit
 
 struct ImagePickerView: UIViewControllerRepresentable {
 
+    var playersImageInsertOptionsViewModel: PlayersImageInsertOptionsViewModel
     
-    @Binding var selectedImage: UIImage?
-    @Environment(\.isPresented) var isPresented
-    @Environment(\.dismiss) var dissmis
+    @Environment(\.dismiss) var dismiss
     
+    init(playersImageInsertOptionsViewModel: PlayersImageInsertOptionsViewModel) {
+        self.playersImageInsertOptionsViewModel = playersImageInsertOptionsViewModel
+    }
+
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .camera
@@ -40,11 +43,11 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let orginalImage = info[.originalImage] as? UIImage else { return }
-        guard let compressedImage = orginalImage.jpegData(compressionQuality: 0.6) else { return }
+        guard let originalImage = info[.originalImage] as? UIImage else { return }
+        guard let compressedImage = originalImage.jpegData(compressionQuality: 0.6) else { return }
         guard let selectedImage = UIImage(data: compressedImage) else { return }
-        self.picker.selectedImage = selectedImage
-        self.picker.dissmis()
+        self.picker.playersImageInsertOptionsViewModel.selectedImage = selectedImage
+        self.picker.dismiss()
         
         
     }

@@ -1,63 +1,68 @@
 //
 //  AddNewSparring.swift
-//  WinCounter
+//  WatchWinCounter Watch App
 //
-//  Created by Patryk Danielewicz on 18/12/2024.
+//  Created by Patryk Danielewicz on 23/01/2025.
 //
 import CoreData
 import SwiftUI
 
 struct AddNewSparring: View {
     
-    @Environment(\.dismiss) var dismiss
     @StateObject private var viewModel: AddNewSparringViewModel
     
+    @Environment(\.dismiss) var dismiss
+ 
     init(dataController: DataControllerProtocol) {
         _viewModel = StateObject(wrappedValue: AddNewSparringViewModel(dataController: dataController))
-    }
-    
-    init(dataController: DataControllerProtocol, sparring: Sparring) {
-        _viewModel = StateObject(wrappedValue: AddNewSparringViewModel(dataController: dataController, sparring: sparring))
-    }
+        }
     
     var body: some View {
         NavigationStack {
             Form {
                 DatePicker("Select a date", selection: $viewModel.sparringDate, displayedComponents: .date)
-                List() {
-                    Section("Select players") {
-                        ForEach(viewModel.players, id: \.id) { player in
+
+                Section("Select players") {
+                    
+                    List() {
+                        ForEach(viewModel.players, id: \.self) { player in
                             if player.doubles == false {
                                 Button {
                                     viewModel.addingPlayersforSparring(for: player)
                                 } label: {
                                     HStack {
-                                        let image = viewModel.dc.decodeImage(for: player)
-                                        PlayerImageView(image: image)
+                                        if let image = player.image {
+                                            if let uiImage = UIImage(data: image) {
+                                                Image(uiImage: uiImage)
+                                                    .resizable()
+                                                    .scaledToFill()
+                                                    .frame(width: 30, height: 30)
+                                                    .clipShape(.circle)
+                                            }
+                                        }
                                         Text(player.wrappedName)
                                         Spacer()
                                         if viewModel.selectedPlayers.contains(player) {
                                             Image(systemName: "checkmark")
-                                                .foregroundColor(Color.green)
+                                                .foregroundColor(Color.brand)
                                         }
                                     }
                                 }
                             }
-                        }
-                        Button("Add new Player") {
-                            viewModel.pressingAddNewPlayerButton()
-                            }
-                            .frame(maxWidth: .infinity)
-                    }
-                    Section("Select team") {
-                        ForEach(viewModel.players, id: \.id) { player in
-                            if player.doubles == true {
+                            else {
                                 Button {
                                     viewModel.addingPlayersforSparring(for: player)
                                 } label: {
                                     HStack {
-                                        let image = viewModel.dc.decodeImage(for: player)
-                                        PlayerImageView(image: image)
+                                        if let image = player.image {
+                                            if let uiImage = UIImage(data: image) {
+                                                Image(uiImage: uiImage)
+                                                    .resizable()
+                                                    .scaledToFill()
+                                                    .frame(width: 50, height: 50)
+                                                    .clipShape(.circle)
+                                            }
+                                        }
                                         Text(player.wrappedName)
                                         Spacer()
                                         if viewModel.selectedPlayers.contains(player) {
@@ -68,30 +73,17 @@ struct AddNewSparring: View {
                                 }
                             }
                         }
-                        Button("Add new Team") {
-                            viewModel.pressingAddNewPlayerButton()
-                        }
-                            .frame(maxWidth: .infinity)
-                    }
-                }
-            }
-            .navigationTitle("Add new Sparring")
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Add new Sparring", systemImage: "checkmark.circle.fill") {
-                        if viewModel.areEnoughPlayers() {
+                        Button("Done") {
+                            if !viewModel.AreEnoughPlayers() {
+                                return
+                            }
                             viewModel.saveSparring()
                             dismiss()
                         }
                     }
                 }
             }
-        }
-        .sheet(isPresented: $viewModel.isAddNewPlayerButtonPresed) {
-            AddNewPlayer(dataController: viewModel.dc, doubles: false)
-        }
-        .sheet(isPresented: $viewModel.isAddNewTeamButtonPresed) {
-            AddNewPlayer(dataController: viewModel.dc, doubles: true)
+            .navigationTitle("Add new Sparring")
         }
         .alert("Not enought players or teams", isPresented: $viewModel.lessThenTwoPlayers) {
             Button("Ok") { }

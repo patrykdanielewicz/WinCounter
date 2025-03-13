@@ -11,6 +11,49 @@
 		60A514762D43DF06000B5F63 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A5145D2D43D2B5000B5F63 /* SwiftUI.framework */; };
 		60A5147F2D43DF07000B5F63 /* WinCounterComplicationExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 60A514732D43DF06000B5F63 /* WinCounterComplicationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		60AFA7022D3FADE00065A4AC /* WatchWinCounter Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 60AFA6F52D3FADDF0065A4AC /* WatchWinCounter Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		60C2BCB92D81990500F07529 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60C2BC932D81990500F07529 /* Preview Assets.xcassets */; };
+		60C2BCBA2D81990500F07529 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60C2BCB52D81990500F07529 /* Assets.xcassets */; };
+		60C2BCC02D81990500F07529 /* SparringStatisticDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BC962D81990500F07529 /* SparringStatisticDetailView.swift */; };
+		60C2BCC12D81990500F07529 /* SparringStatisticDVViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BC972D81990500F07529 /* SparringStatisticDVViewModel.swift */; };
+		60C2BCC22D81990500F07529 /* StatisticViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BC992D81990500F07529 /* StatisticViews.swift */; };
+		60C2BCC32D81990500F07529 /* StatisticViews-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BC9A2D81990500F07529 /* StatisticViews-ViewModel.swift */; };
+		60C2BCC42D81990500F07529 /* AddNewPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BC9C2D81990500F07529 /* AddNewPlayer.swift */; };
+		60C2BCC52D81990500F07529 /* AddNewPlayer-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BC9D2D81990500F07529 /* AddNewPlayer-ViewModel.swift */; };
+		60C2BCC62D81990500F07529 /* AddNewSparring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BC9E2D81990500F07529 /* AddNewSparring.swift */; };
+		60C2BCC72D81990500F07529 /* AddNewSparring-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BC9F2D81990500F07529 /* AddNewSparring-ViewModel.swift */; };
+		60C2BCC82D81990500F07529 /* CircleCropperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BCA02D81990500F07529 /* CircleCropperView.swift */; };
+		60C2BCC92D81990500F07529 /* CircleCropperView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BCA12D81990500F07529 /* CircleCropperView-ViewModel.swift */; };
+		60C2BCCA2D81990500F07529 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BCA22D81990500F07529 /* ImagePickerView.swift */; };
+		60C2BCCB2D81990500F07529 /* MatchEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BCA32D81990500F07529 /* MatchEditingView.swift */; };
+		60C2BCCC2D81990500F07529 /* MatchEditingView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BCA42D81990500F07529 /* MatchEditingView-ViewModel.swift */; };
+		60C2BCCD2D81990500F07529 /* MatchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BCA52D81990500F07529 /* MatchesView.swift */; };
+		60C2BCCE2D81990500F07529 /* MatchesView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BCA62D81990500F07529 /* MatchesView-ViewModel.swift */; };
+		60C2BCCF2D81990500F07529 /* PlayersDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BCA72D81990500F07529 /* PlayersDetail.swift */; };
+		60C2BCD02D81990500F07529 /* PlayersDetailView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BCA82D81990500F07529 /* PlayersDetailView-ViewModel.swift */; };
+		60C2BCD12D81990500F07529 /* PlayersImageInsertOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BCA92D81990500F07529 /* PlayersImageInsertOptions.swift */; };
+		60C2BCD22D81990500F07529 /* PlayersImageInsertOptions-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BCAA2D81990500F07529 /* PlayersImageInsertOptions-ViewModel.swift */; };
+		60C2BCD32D81990500F07529 /* PlayersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BCAB2D81990500F07529 /* PlayersView.swift */; };
+		60C2BCD42D81990500F07529 /* PlayersView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BCAC2D81990500F07529 /* PlayersView-ViewModel.swift */; };
+		60C2BCD52D81990500F07529 /* SparringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BCAD2D81990500F07529 /* SparringView.swift */; };
+		60C2BCD62D81990500F07529 /* SparringView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BCAE2D81990500F07529 /* SparringView-ViewModel.swift */; };
+		60C2BCD72D81990500F07529 /* WinCounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BCAF2D81990500F07529 /* WinCounterApp.swift */; };
+		60C2BCD82D81990500F07529 /* WinCounterTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BCB02D81990500F07529 /* WinCounterTabView.swift */; };
+		60C2BCDA2D81990500F07529 /* PlayersGroupsSegmentedPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BCB32D81990500F07529 /* PlayersGroupsSegmentedPickerView.swift */; };
+		60C2BD1C2D81C8A200F07529 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60C2BD0B2D81C8A200F07529 /* Preview Assets.xcassets */; };
+		60C2BD1D2D81C8A200F07529 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60C2BD0F2D81C8A200F07529 /* Assets.xcassets */; };
+		60C2BD1E2D81C8A200F07529 /* Assets 2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60C2BD102D81C8A200F07529 /* Assets 2.xcassets */; };
+		60C2BD222D81C8A200F07529 /* AddNewMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BD0D2D81C8A200F07529 /* AddNewMatchView.swift */; };
+		60C2BD232D81C8A200F07529 /* AddNewSparring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BD0E2D81C8A200F07529 /* AddNewSparring.swift */; };
+		60C2BD242D81C8A200F07529 /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BD112D81C8A200F07529 /* MatchView.swift */; };
+		60C2BD252D81C8A200F07529 /* SparringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BD122D81C8A200F07529 /* SparringView.swift */; };
+		60C2BD262D81C8A200F07529 /* WatchWinCounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BD142D81C8A200F07529 /* WatchWinCounterApp.swift */; };
+		60C2BD342D81C8A200F07529 /* WinCounterComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BD192D81C8A200F07529 /* WinCounterComplication.swift */; };
+		60C2BD352D81C8A200F07529 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60C2BD162D81C8A200F07529 /* Assets.xcassets */; };
+		60C2BD362D81C8A200F07529 /* Assets 2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60C2BD172D81C8A200F07529 /* Assets 2.xcassets */; };
+		60C2BD392D81C8ED00F07529 /* SparringView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BD382D81C8ED00F07529 /* SparringView-ViewModel.swift */; };
+		60C2BD3B2D81CACC00F07529 /* AddNewSparringView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BD3A2D81CACC00F07529 /* AddNewSparringView-ViewModel.swift */; };
+		60C2BD3D2D81E5B000F07529 /* AddNewMatchView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BD3C2D81E5B000F07529 /* AddNewMatchView-ViewModel.swift */; };
+		60C2BD3F2D82C9CC00F07529 /* MatchView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2BD3E2D82C9CC00F07529 /* MatchView-ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,50 +104,80 @@
 		60A514732D43DF06000B5F63 /* WinCounterComplicationExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WinCounterComplicationExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		60A514742D43DF06000B5F63 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		60AFA6F52D3FADDF0065A4AC /* WatchWinCounter Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WatchWinCounter Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		60C2BC932D81990500F07529 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		60C2BC962D81990500F07529 /* SparringStatisticDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparringStatisticDetailView.swift; sourceTree = "<group>"; };
+		60C2BC972D81990500F07529 /* SparringStatisticDVViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparringStatisticDVViewModel.swift; sourceTree = "<group>"; };
+		60C2BC992D81990500F07529 /* StatisticViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViews.swift; sourceTree = "<group>"; };
+		60C2BC9A2D81990500F07529 /* StatisticViews-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StatisticViews-ViewModel.swift"; sourceTree = "<group>"; };
+		60C2BC9C2D81990500F07529 /* AddNewPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPlayer.swift; sourceTree = "<group>"; };
+		60C2BC9D2D81990500F07529 /* AddNewPlayer-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddNewPlayer-ViewModel.swift"; sourceTree = "<group>"; };
+		60C2BC9E2D81990500F07529 /* AddNewSparring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewSparring.swift; sourceTree = "<group>"; };
+		60C2BC9F2D81990500F07529 /* AddNewSparring-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddNewSparring-ViewModel.swift"; sourceTree = "<group>"; };
+		60C2BCA02D81990500F07529 /* CircleCropperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCropperView.swift; sourceTree = "<group>"; };
+		60C2BCA12D81990500F07529 /* CircleCropperView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CircleCropperView-ViewModel.swift"; sourceTree = "<group>"; };
+		60C2BCA22D81990500F07529 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		60C2BCA32D81990500F07529 /* MatchEditingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchEditingView.swift; sourceTree = "<group>"; };
+		60C2BCA42D81990500F07529 /* MatchEditingView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MatchEditingView-ViewModel.swift"; sourceTree = "<group>"; };
+		60C2BCA52D81990500F07529 /* MatchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesView.swift; sourceTree = "<group>"; };
+		60C2BCA62D81990500F07529 /* MatchesView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MatchesView-ViewModel.swift"; sourceTree = "<group>"; };
+		60C2BCA72D81990500F07529 /* PlayersDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersDetail.swift; sourceTree = "<group>"; };
+		60C2BCA82D81990500F07529 /* PlayersDetailView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayersDetailView-ViewModel.swift"; sourceTree = "<group>"; };
+		60C2BCA92D81990500F07529 /* PlayersImageInsertOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersImageInsertOptions.swift; sourceTree = "<group>"; };
+		60C2BCAA2D81990500F07529 /* PlayersImageInsertOptions-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayersImageInsertOptions-ViewModel.swift"; sourceTree = "<group>"; };
+		60C2BCAB2D81990500F07529 /* PlayersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersView.swift; sourceTree = "<group>"; };
+		60C2BCAC2D81990500F07529 /* PlayersView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayersView-ViewModel.swift"; sourceTree = "<group>"; };
+		60C2BCAD2D81990500F07529 /* SparringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparringView.swift; sourceTree = "<group>"; };
+		60C2BCAE2D81990500F07529 /* SparringView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SparringView-ViewModel.swift"; sourceTree = "<group>"; };
+		60C2BCAF2D81990500F07529 /* WinCounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinCounterApp.swift; sourceTree = "<group>"; };
+		60C2BCB02D81990500F07529 /* WinCounterTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinCounterTabView.swift; sourceTree = "<group>"; };
+		60C2BCB32D81990500F07529 /* PlayersGroupsSegmentedPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersGroupsSegmentedPickerView.swift; sourceTree = "<group>"; };
+		60C2BCB52D81990500F07529 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		60C2BD0B2D81C8A200F07529 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		60C2BD0D2D81C8A200F07529 /* AddNewMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewMatchView.swift; sourceTree = "<group>"; };
+		60C2BD0E2D81C8A200F07529 /* AddNewSparring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewSparring.swift; sourceTree = "<group>"; };
+		60C2BD0F2D81C8A200F07529 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		60C2BD102D81C8A200F07529 /* Assets 2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets 2.xcassets"; sourceTree = "<group>"; };
+		60C2BD112D81C8A200F07529 /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
+		60C2BD122D81C8A200F07529 /* SparringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparringView.swift; sourceTree = "<group>"; };
+		60C2BD132D81C8A200F07529 /* WatchWinCounter Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WatchWinCounter Watch App.entitlements"; sourceTree = "<group>"; };
+		60C2BD142D81C8A200F07529 /* WatchWinCounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchWinCounterApp.swift; sourceTree = "<group>"; };
+		60C2BD162D81C8A200F07529 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		60C2BD172D81C8A200F07529 /* Assets 2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets 2.xcassets"; sourceTree = "<group>"; };
+		60C2BD182D81C8A200F07529 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60C2BD192D81C8A200F07529 /* WinCounterComplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinCounterComplication.swift; sourceTree = "<group>"; };
+		60C2BD382D81C8ED00F07529 /* SparringView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SparringView-ViewModel.swift"; sourceTree = "<group>"; };
+		60C2BD3A2D81CACC00F07529 /* AddNewSparringView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddNewSparringView-ViewModel.swift"; sourceTree = "<group>"; };
+		60C2BD3C2D81E5B000F07529 /* AddNewMatchView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddNewMatchView-ViewModel.swift"; sourceTree = "<group>"; };
+		60C2BD3E2D82C9CC00F07529 /* MatchView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MatchView-ViewModel.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		60518F932D4D0577007E25B0 /* Exceptions for "WinCounter" folder in "WinCounter" target */ = {
+		60C2BCDC2D8199A300F07529 /* Exceptions for "SupportingFiles" folder in "WinCounter" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
 			target = 60152CD32D37D32A003FA341 /* WinCounter */;
 		};
-		60A514832D43DF07000B5F63 /* Exceptions for "WinCounterComplication" folder in "WinCounterComplicationExtension" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 60A514722D43DF06000B5F63 /* WinCounterComplicationExtension */;
-		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		6036BF032D4D014F00254A66 /* WinCounter */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				60518F932D4D0577007E25B0 /* Exceptions for "WinCounter" folder in "WinCounter" target */,
-			);
-			path = WinCounter;
-			sourceTree = "<group>";
-		};
-		60A514772D43DF06000B5F63 /* WinCounterComplication */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				60A514832D43DF07000B5F63 /* Exceptions for "WinCounterComplication" folder in "WinCounterComplicationExtension" target */,
-			);
-			path = WinCounterComplication;
-			sourceTree = "<group>";
-		};
-		60AFA6F62D3FADDF0065A4AC /* WatchWinCounter Watch App */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "WatchWinCounter Watch App";
-			sourceTree = "<group>";
-		};
 		60AFA71A2D3FE4290065A4AC /* Model */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Model;
+			sourceTree = "<group>";
+		};
+		60C2BCDB2D81997900F07529 /* SupportingFiles */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				60C2BCDC2D8199A300F07529 /* Exceptions for "SupportingFiles" folder in "WinCounter" target */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		60C2BCDD2D8199F700F07529 /* Utilities */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -139,12 +212,11 @@
 		60152CCB2D37D32A003FA341 = {
 			isa = PBXGroup;
 			children = (
-				6036BF032D4D014F00254A66 /* WinCounter */,
-				60AFA71A2D3FE4290065A4AC /* Model */,
-				60AFA6F62D3FADDF0065A4AC /* WatchWinCounter Watch App */,
-				60A514772D43DF06000B5F63 /* WinCounterComplication */,
-				60A5145A2D43D2B5000B5F63 /* Frameworks */,
+				60C2BD1B2D81C8A200F07529 /* AppleWatch */,
 				60152CD52D37D32A003FA341 /* Products */,
+				60A5145A2D43D2B5000B5F63 /* Frameworks */,
+				60AFA71A2D3FE4290065A4AC /* Model */,
+				60C2BCB82D81990500F07529 /* WinCounter */,
 			);
 			sourceTree = "<group>";
 		};
@@ -167,6 +239,131 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		60C2BC942D81990500F07529 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				60C2BC932D81990500F07529 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		60C2BCB42D81990500F07529 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				60C2BCA02D81990500F07529 /* CircleCropperView.swift */,
+				60C2BCA22D81990500F07529 /* ImagePickerView.swift */,
+				60C2BCA92D81990500F07529 /* PlayersImageInsertOptions.swift */,
+				60C2BCA32D81990500F07529 /* MatchEditingView.swift */,
+				60C2BCA52D81990500F07529 /* MatchesView.swift */,
+				60C2BC9E2D81990500F07529 /* AddNewSparring.swift */,
+				60C2BCAD2D81990500F07529 /* SparringView.swift */,
+				60C2BC9C2D81990500F07529 /* AddNewPlayer.swift */,
+				60C2BC962D81990500F07529 /* SparringStatisticDetailView.swift */,
+				60C2BC992D81990500F07529 /* StatisticViews.swift */,
+				60C2BCA72D81990500F07529 /* PlayersDetail.swift */,
+				60C2BCAB2D81990500F07529 /* PlayersView.swift */,
+				60C2BCB32D81990500F07529 /* PlayersGroupsSegmentedPickerView.swift */,
+				60C2BCB02D81990500F07529 /* WinCounterTabView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		60C2BCB82D81990500F07529 /* WinCounter */ = {
+			isa = PBXGroup;
+			children = (
+				60C2BCDD2D8199F700F07529 /* Utilities */,
+				60C2BCDB2D81997900F07529 /* SupportingFiles */,
+				60C2BC942D81990500F07529 /* Preview Content */,
+				60C2BCE52D819A5300F07529 /* ViewModels */,
+				60C2BCB42D81990500F07529 /* View */,
+				60C2BCB52D81990500F07529 /* Assets.xcassets */,
+				60C2BCAF2D81990500F07529 /* WinCounterApp.swift */,
+			);
+			path = WinCounter;
+			sourceTree = "<group>";
+		};
+		60C2BCE52D819A5300F07529 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				60C2BC972D81990500F07529 /* SparringStatisticDVViewModel.swift */,
+				60C2BCA12D81990500F07529 /* CircleCropperView-ViewModel.swift */,
+				60C2BCAA2D81990500F07529 /* PlayersImageInsertOptions-ViewModel.swift */,
+				60C2BCA42D81990500F07529 /* MatchEditingView-ViewModel.swift */,
+				60C2BCA62D81990500F07529 /* MatchesView-ViewModel.swift */,
+				60C2BC9F2D81990500F07529 /* AddNewSparring-ViewModel.swift */,
+				60C2BCAE2D81990500F07529 /* SparringView-ViewModel.swift */,
+				60C2BC9D2D81990500F07529 /* AddNewPlayer-ViewModel.swift */,
+				60C2BC9A2D81990500F07529 /* StatisticViews-ViewModel.swift */,
+				60C2BCA82D81990500F07529 /* PlayersDetailView-ViewModel.swift */,
+				60C2BCAC2D81990500F07529 /* PlayersView-ViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		60C2BD0C2D81C8A200F07529 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				60C2BD0B2D81C8A200F07529 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		60C2BD152D81C8A200F07529 /* WatchWinCounter Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				60C2BD402D82E74C00F07529 /* ViewsModel */,
+				60C2BD372D81C8B200F07529 /* Views */,
+				60C2BD0C2D81C8A200F07529 /* Preview Content */,
+				60C2BD0F2D81C8A200F07529 /* Assets.xcassets */,
+				60C2BD102D81C8A200F07529 /* Assets 2.xcassets */,
+				60C2BD132D81C8A200F07529 /* WatchWinCounter Watch App.entitlements */,
+			);
+			path = "WatchWinCounter Watch App";
+			sourceTree = "<group>";
+		};
+		60C2BD1A2D81C8A200F07529 /* WinCounterComplication */ = {
+			isa = PBXGroup;
+			children = (
+				60C2BD162D81C8A200F07529 /* Assets.xcassets */,
+				60C2BD172D81C8A200F07529 /* Assets 2.xcassets */,
+				60C2BD182D81C8A200F07529 /* Info.plist */,
+				60C2BD192D81C8A200F07529 /* WinCounterComplication.swift */,
+			);
+			path = WinCounterComplication;
+			sourceTree = "<group>";
+		};
+		60C2BD1B2D81C8A200F07529 /* AppleWatch */ = {
+			isa = PBXGroup;
+			children = (
+				60C2BD152D81C8A200F07529 /* WatchWinCounter Watch App */,
+				60C2BD1A2D81C8A200F07529 /* WinCounterComplication */,
+			);
+			path = AppleWatch;
+			sourceTree = "<group>";
+		};
+		60C2BD372D81C8B200F07529 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				60C2BD112D81C8A200F07529 /* MatchView.swift */,
+				60C2BD0D2D81C8A200F07529 /* AddNewMatchView.swift */,
+				60C2BD0E2D81C8A200F07529 /* AddNewSparring.swift */,
+				60C2BD122D81C8A200F07529 /* SparringView.swift */,
+				60C2BD142D81C8A200F07529 /* WatchWinCounterApp.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		60C2BD402D82E74C00F07529 /* ViewsModel */ = {
+			isa = PBXGroup;
+			children = (
+				60C2BD3E2D82C9CC00F07529 /* MatchView-ViewModel.swift */,
+				60C2BD3C2D81E5B000F07529 /* AddNewMatchView-ViewModel.swift */,
+				60C2BD3A2D81CACC00F07529 /* AddNewSparringView-ViewModel.swift */,
+				60C2BD382D81C8ED00F07529 /* SparringView-ViewModel.swift */,
+			);
+			path = ViewsModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -185,8 +382,9 @@
 				60AFA7012D3FADE00065A4AC /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				6036BF032D4D014F00254A66 /* WinCounter */,
 				60AFA71A2D3FE4290065A4AC /* Model */,
+				60C2BCDB2D81997900F07529 /* SupportingFiles */,
+				60C2BCDD2D8199F700F07529 /* Utilities */,
 			);
 			name = WinCounter;
 			packageProductDependencies = (
@@ -206,9 +404,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				60A514772D43DF06000B5F63 /* WinCounterComplication */,
 			);
 			name = WinCounterComplicationExtension;
 			packageProductDependencies = (
@@ -232,7 +427,6 @@
 				60A5147E2D43DF07000B5F63 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				60AFA6F62D3FADDF0065A4AC /* WatchWinCounter Watch App */,
 				60AFA71A2D3FE4290065A4AC /* Model */,
 			);
 			name = "WatchWinCounter Watch App";
@@ -291,6 +485,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60C2BCB92D81990500F07529 /* Preview Assets.xcassets in Resources */,
+				60C2BCBA2D81990500F07529 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +494,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60C2BD352D81C8A200F07529 /* Assets.xcassets in Resources */,
+				60C2BD362D81C8A200F07529 /* Assets 2.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +503,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60C2BD1C2D81C8A200F07529 /* Preview Assets.xcassets in Resources */,
+				60C2BD1D2D81C8A200F07529 /* Assets.xcassets in Resources */,
+				60C2BD1E2D81C8A200F07529 /* Assets 2.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +516,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60C2BCC02D81990500F07529 /* SparringStatisticDetailView.swift in Sources */,
+				60C2BCC12D81990500F07529 /* SparringStatisticDVViewModel.swift in Sources */,
+				60C2BCC22D81990500F07529 /* StatisticViews.swift in Sources */,
+				60C2BCC32D81990500F07529 /* StatisticViews-ViewModel.swift in Sources */,
+				60C2BCC42D81990500F07529 /* AddNewPlayer.swift in Sources */,
+				60C2BCC52D81990500F07529 /* AddNewPlayer-ViewModel.swift in Sources */,
+				60C2BCC62D81990500F07529 /* AddNewSparring.swift in Sources */,
+				60C2BCC72D81990500F07529 /* AddNewSparring-ViewModel.swift in Sources */,
+				60C2BCC82D81990500F07529 /* CircleCropperView.swift in Sources */,
+				60C2BCC92D81990500F07529 /* CircleCropperView-ViewModel.swift in Sources */,
+				60C2BCCA2D81990500F07529 /* ImagePickerView.swift in Sources */,
+				60C2BCCB2D81990500F07529 /* MatchEditingView.swift in Sources */,
+				60C2BCCC2D81990500F07529 /* MatchEditingView-ViewModel.swift in Sources */,
+				60C2BCCD2D81990500F07529 /* MatchesView.swift in Sources */,
+				60C2BCCE2D81990500F07529 /* MatchesView-ViewModel.swift in Sources */,
+				60C2BCCF2D81990500F07529 /* PlayersDetail.swift in Sources */,
+				60C2BCD02D81990500F07529 /* PlayersDetailView-ViewModel.swift in Sources */,
+				60C2BCD12D81990500F07529 /* PlayersImageInsertOptions.swift in Sources */,
+				60C2BCD22D81990500F07529 /* PlayersImageInsertOptions-ViewModel.swift in Sources */,
+				60C2BCD32D81990500F07529 /* PlayersView.swift in Sources */,
+				60C2BCD42D81990500F07529 /* PlayersView-ViewModel.swift in Sources */,
+				60C2BCD52D81990500F07529 /* SparringView.swift in Sources */,
+				60C2BCD62D81990500F07529 /* SparringView-ViewModel.swift in Sources */,
+				60C2BCD72D81990500F07529 /* WinCounterApp.swift in Sources */,
+				60C2BCD82D81990500F07529 /* WinCounterTabView.swift in Sources */,
+				60C2BCDA2D81990500F07529 /* PlayersGroupsSegmentedPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +549,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60C2BD342D81C8A200F07529 /* WinCounterComplication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +557,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60C2BD3B2D81CACC00F07529 /* AddNewSparringView-ViewModel.swift in Sources */,
+				60C2BD3D2D81E5B000F07529 /* AddNewMatchView-ViewModel.swift in Sources */,
+				60C2BD392D81C8ED00F07529 /* SparringView-ViewModel.swift in Sources */,
+				60C2BD222D81C8A200F07529 /* AddNewMatchView.swift in Sources */,
+				60C2BD3F2D82C9CC00F07529 /* MatchView-ViewModel.swift in Sources */,
+				60C2BD232D81C8A200F07529 /* AddNewSparring.swift in Sources */,
+				60C2BD242D81C8A200F07529 /* MatchView.swift in Sources */,
+				60C2BD252D81C8A200F07529 /* SparringView.swift in Sources */,
+				60C2BD262D81C8A200F07529 /* WatchWinCounterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,7 +709,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = WinCounter/WinCounter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WinCounter/SupportingFiles/WinCounter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3.1;
@@ -480,7 +717,7 @@
 				DEVELOPMENT_TEAM = 24YMS45SS2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WinCounter/Info.plist;
+				INFOPLIST_FILE = WinCounter/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -506,7 +743,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = WinCounter/WinCounter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WinCounter/SupportingFiles/WinCounter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3.1;
@@ -514,7 +751,7 @@
 				DEVELOPMENT_TEAM = 24YMS45SS2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WinCounter/Info.plist;
+				INFOPLIST_FILE = WinCounter/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -545,7 +782,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 24YMS45SS2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WinCounterComplication/Info.plist;
+				INFOPLIST_FILE = AppleWatch/WinCounterComplication/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WinCounterComplication;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -576,7 +813,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 24YMS45SS2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WinCounterComplication/Info.plist;
+				INFOPLIST_FILE = AppleWatch/WinCounterComplication/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WinCounterComplication;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -602,11 +839,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "WatchWinCounter Watch App/WatchWinCounter Watch App.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "AppleWatch/WatchWinCounter Watch App/WatchWinCounter Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_ASSET_PATHS = "\"WatchWinCounter Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"AppleWatch/WatchWinCounter Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = 24YMS45SS2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -635,11 +872,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "WatchWinCounter Watch App/WatchWinCounter Watch App.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "AppleWatch/WatchWinCounter Watch App/WatchWinCounter Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_ASSET_PATHS = "\"WatchWinCounter Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"AppleWatch/WatchWinCounter Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = 24YMS45SS2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

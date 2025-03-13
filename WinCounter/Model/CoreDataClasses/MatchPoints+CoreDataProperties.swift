@@ -2,7 +2,7 @@
 //  MatchPoints+CoreDataProperties.swift
 //  WinCounter
 //
-//  Created by Patryk Danielewicz on 20/02/2025.
+//  Created by Patryk Danielewicz on 11/03/2025.
 //
 //
 
@@ -17,6 +17,7 @@ extension MatchPoints {
     }
 
     @NSManaged public var points: Int16
+    @NSManaged public var id: UUID?
     @NSManaged public var match: Match?
     @NSManaged public var player: Player?
 
@@ -27,6 +28,7 @@ extension MatchPoints {
     public var wrappedMatch: Match {
         return match ?? Match()
     }
+    
 }
 
 extension MatchPoints : Identifiable {

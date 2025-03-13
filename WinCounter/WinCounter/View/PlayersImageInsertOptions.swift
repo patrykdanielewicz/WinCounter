@@ -11,7 +11,11 @@ import SwiftUI
 struct PlayersImageInsertOptions: View {
     
     @Environment(\.dismiss) var dismiss
-    @StateObject var viewModel = PlayersImageInsertOptionsViewModel()
+    @StateObject var viewModel: PlayersImageInsertOptionsViewModel
+    
+    init(addNewPlayerViewModel: AddNewPlayerViewModel) {
+        _viewModel = StateObject(wrappedValue: PlayersImageInsertOptionsViewModel(addNewPlayerViewMode: addNewPlayerViewModel))
+    }
     
     var body: some View {
         NavigationStack {
@@ -23,7 +27,7 @@ struct PlayersImageInsertOptions: View {
                     }
                 }
                 Button {
-                    viewModel.showingCammera()
+                    viewModel.showingCamera()
                 } label: {
                     HStack {
                         Image(systemName: "camera")
@@ -33,26 +37,25 @@ struct PlayersImageInsertOptions: View {
             }
             .presentationDetents([.fraction(0.2)])
             .onChange(of: viewModel.selectedImage) {
-                viewModel.showingCircelCropper()
+                viewModel.showingCircleCropper()
             }
-         
+            .onChange(of: viewModel.addNewPlayerViewModel?.playersImageData) {
+                dismiss()
+            }
             .onChange(of: viewModel.selectedCameraImage) {
                 if let selectedCameraImage = viewModel.selectedCameraImage {
                     viewModel.selectedImage = selectedCameraImage
-        
                 }
             }
             .fullScreenCover(isPresented: $viewModel.showCamera) {
-                ImagePickerView(selectedImage: $viewModel.selectedCameraImage)
+                ImagePickerView(playersImageInsertOptionsViewModel: viewModel)
             }
-//            .fullScreenCover(isPresented: $viewModel.showCircleCropper) {
-//                CircleCropperView(image: $viewModel.selectedImage, showInsertImageOptions: $viewModel.showInsertImageOptions)
-//            }
+            .fullScreenCover(isPresented: $viewModel.showCircleCropper) {
+                CircleCropperView(addNewPlayerViewModel: viewModel.addNewPlayerViewModel, image: viewModel.selectedImage)
+            }
         }
-        
         .tint(.brandPrimary)
     }
- 
 }
 
 //#Preview {
